@@ -12,7 +12,7 @@ namespace MiniclipTrick.Game.Piece
 
         [SerializeField] private Vector2 centerOfMass;
 
-        private Rigidbody2D _rigidbody;
+        public Rigidbody2D _rigidbody;
         private Transform _transform;
 
         [SerializeField, ReadOnly] private bool _isPlaced;
@@ -58,7 +58,6 @@ namespace MiniclipTrick.Game.Piece
             {
                 _isPlaced = value;
                 _rigidbody.velocity = Vector3.zero;
-                _rigidbody.bodyType = RigidbodyType2D.Dynamic;
             }
         }
 
@@ -86,6 +85,11 @@ namespace MiniclipTrick.Game.Piece
         {
             _previousPosition = _rigidbody.position;
             _transform.position += DownVector * (Time.fixedDeltaTime * _currentSpeed);
+        }
+
+        public void ReturnToPreviousPosition()
+        {
+            _transform.position = _previousPosition;
         }
 
         public void Rotate()
