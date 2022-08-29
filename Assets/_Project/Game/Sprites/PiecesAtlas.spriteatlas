@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PiecesAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 256
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: a497ff940b5c3204098a2cc25c99c90b, type: 3}
+    - {fileID: 2800000, guid: f8c499cce06c33a4ba356e186b881f4f, type: 3}
+    - {fileID: 2800000, guid: 67807b5ba86812c48b18a86f2e425556, type: 3}
+    - {fileID: 2800000, guid: f26993912593e6f4b8910e16f4c5d1fc, type: 3}
+    - {fileID: 2800000, guid: 01524da43cc10b642a66ceed242a0057, type: 3}
+    - {fileID: 2800000, guid: 598f564462c8acd419f300645a3e121e, type: 3}
+    - {fileID: 2800000, guid: 6f51fe7ede32ef04bb11a019cc0404df, type: 3}
+    - {fileID: 2800000, guid: b4eefb7da06c2ee41998877858e477a9, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: f26993912593e6f4b8910e16f4c5d1fc, type: 3}
+  - {fileID: 21300000, guid: 598f564462c8acd419f300645a3e121e, type: 3}
+  - {fileID: 21300000, guid: a497ff940b5c3204098a2cc25c99c90b, type: 3}
+  - {fileID: 21300000, guid: 01524da43cc10b642a66ceed242a0057, type: 3}
+  - {fileID: 21300000, guid: 67807b5ba86812c48b18a86f2e425556, type: 3}
+  - {fileID: 21300000, guid: f8c499cce06c33a4ba356e186b881f4f, type: 3}
+  - {fileID: 21300000, guid: b4eefb7da06c2ee41998877858e477a9, type: 3}
+  - {fileID: 21300000, guid: 6f51fe7ede32ef04bb11a019cc0404df, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - tetris4
+  - tetris6
+  - tetris9
+  - tetris5
+  - tetris3
+  - tetris2
+  - tetris8
+  - tetris7
+  m_RenderDataMap: {}
+  m_Tag: PiecesAtlas
+  m_IsVariant: 0
