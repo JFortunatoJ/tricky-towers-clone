@@ -40,7 +40,7 @@ namespace MiniclipTrick.Game
                 _piecesSpawner.CurrentPiece.MoveHorizontally(1);
             }
 
-            /*
+            
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 _piecesSpawner.CurrentPiece.BoostSpeed();
@@ -50,7 +50,6 @@ namespace MiniclipTrick.Game
             {
                 _piecesSpawner.CurrentPiece.ResetSpeed();
             }
-            */
         }
     }
 }

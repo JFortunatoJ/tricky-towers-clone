@@ -587,7 +587,6 @@ MonoBehaviour:
   - {fileID: 757761366504945426, guid: f67969e0ad2268e49bec60317c4d690d, type: 3}
   - {fileID: 7710045559527263742, guid: 2bf7d1def004420409697bcc9a65d683, type: 3}
   - {fileID: 5362251164642672824, guid: 4ae65ce5237f20047940eb84aea30bd2, type: 3}
-  - {fileID: 6386897525801297428, guid: e185c62c39d4d144e947230933cadf2a, type: 3}
   _pieceSpawnPoint: {fileID: 1019679205}
   _placedPiecesHolder: {fileID: 692631318}
   _spawnerRangePosition: {x: -1, y: 1}
@@ -664,7 +663,7 @@ Transform:
   m_GameObject: {fileID: 816240826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 7, y: 0.2, z: 1}
+  m_LocalScale: {x: 6.9, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1786451184}
@@ -969,7 +968,7 @@ GameObject:
   - component: {fileID: 1401126984}
   - component: {fileID: 1401126986}
   - component: {fileID: 1401126985}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}

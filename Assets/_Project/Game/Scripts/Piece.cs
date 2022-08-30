@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 
@@ -13,6 +15,7 @@ namespace MiniclipTrick.Game.Piece
         [SerializeField] private Vector2 centerOfMass;
 
         public Rigidbody2D _rigidbody;
+        public List<Collider2D> _colliders;
         private Transform _transform;
 
         [SerializeField, ReadOnly] private bool _isPlaced;
@@ -28,6 +31,8 @@ namespace MiniclipTrick.Game.Piece
 
         public static readonly float NORMAL_SPEED = 4f;
         public static readonly float BOOST_SPEED = 12f;
+
+        [SerializeField] private LayerMask _layer;
 
         public Action OnCollideWithPiece;
 
@@ -64,6 +69,7 @@ namespace MiniclipTrick.Game.Piece
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            _colliders = GetComponentsInChildren<Collider2D>().ToList();
             _transform = transform;
 
             _canRotate = true;
@@ -83,8 +89,10 @@ namespace MiniclipTrick.Game.Piece
 
         public void MoveDownwards()
         {
-            _previousPosition = _rigidbody.position;
-            _transform.position += DownVector * (Time.fixedDeltaTime * _currentSpeed);
+            _previousPosition = _transform.position;
+            Vector3 targetPosition = _transform.position + DownVector * (Time.fixedDeltaTime * _currentSpeed);
+            
+            _transform.position = targetPosition;
         }
 
         public void ReturnToPreviousPosition()

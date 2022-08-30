@@ -7,76 +7,68 @@ namespace MiniclipTrick.Game.Piece
     public class PieceCollision : MonoBehaviour
     {
         private Piece _piece;
-        private PolygonCollider2D _collider;
-        [SerializeField]
-        private Transform[] _collisionPoints;
 
         private Collider2D[] _colliders;
 
         private void Awake()
         {
             _piece = GetComponent<Piece>();
+            _colliders = GetComponentsInChildren<Collider2D>();
         }
 
-        /*
         private void Start()
         {
-            _colliders = new Collider2D[5];
+            for (int i = 0; i < _colliders.Length; i++)
+            {
+                _colliders[i].isTrigger = true;
+            }
         }
 
         private void FixedUpdate()
         {
-            if(_piece.IsPlaced) return;
-            
-            for (int i = 0; i < _collisionPoints.Length; i++)
-            {
-                if (Physics2D.OverlapCircleNonAlloc(_collisionPoints[i].position, .1f, _colliders, (1 << 6)) > 1)
-                {
-                    _piece.IsPlaced = true;
-                    _piece._rigidbody.bodyType = RigidbodyType2D.Dynamic;
-                    return;
-                    
-                    
-                    for (int j = 0; j < _colliders.Length; j++)
-                    {
-                        if(_colliders[i] == null || _colliders[j].gameObject == gameObject) continue;
-                        
-                        _piece.IsPlaced = true;
-                    }
-                }
-            }
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            for (int i = 0; i < _collisionPoints.Length; i++)
-            {
-                Gizmos.DrawSphere(_collisionPoints[i].position, .1f);
-            }
-        }
-        */
 
-        
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            if (collision.transform.CompareTag("DestroyPiece"))
-            {
-                Destroy(gameObject);
-                return;
-            }
-            
             if (_piece.IsPlaced) return;
 
-            ContactPoint2D contact = collision.GetContact(0);
+            _piece.IsPlaced = true;
 
-            if (!(contact.normal.y >= .15f)) return;
+            //Impede que um collider fique em cima de outro
+            for (int i = 0; i < _colliders.Length; i++)
+            {
+                ColliderDistance2D distance = _colliders[i].Distance(col);
+                if (distance.isOverlapped)
+                {
+                    _piece.transform.position += (Vector3)(distance.pointB - distance.pointA);
+                }
+            }
 
-            StartCoroutine(HandlePieceCollisionCoroutine(collision));
+            for (int i = 0; i < _colliders.Length; i++)
+            {
+                _colliders[i].isTrigger = false;
+            }
+
+            _piece._rigidbody.bodyType = RigidbodyType2D.Dynamic;
+
+            _piece.OnCollideWithPiece?.Invoke();
+            _piece.OnCollideWithPiece = null;
         }
-        
+
+        private bool IsMyCollider(Collider2D col)
+        {
+            for (int i = 0; i < _colliders.Length; i++)
+            {
+                if (_colliders[i].Equals(col)) return true;
+            }
+
+            return false;
+        }
+
         private IEnumerator HandlePieceCollisionCoroutine(Collision2D collision)
         {
+            collision.rigidbody.velocity = Vector2.zero;
             collision.rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
             _piece.IsPlaced = true;
@@ -85,10 +77,10 @@ namespace MiniclipTrick.Game.Piece
             {
                 yield return null;
             }
-            
+
             _piece.ReturnToPreviousPosition();
 
-            
+
             _piece._rigidbody.bodyType = RigidbodyType2D.Dynamic;
             collision.rigidbody.constraints = RigidbodyConstraints2D.None;
 
