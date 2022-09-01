@@ -39,7 +39,7 @@ namespace MiniclipTrick.Game.Piece
             Movement.Initialize();
             Collision.Initialize(this);
             
-            Collision.OnCollisionFirstTime += PlacePiece;
+            Collision.OnCollide += PlacePiece;
         }
 
         public void PlacePiece()

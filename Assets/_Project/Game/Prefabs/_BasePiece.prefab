@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 6965684373166965472}
   m_Layer: 6
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6965684373166965472
 Transform:
   m_ObjectHideFlags: 0
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8951169211867810776}
   m_Layer: 6
   m_Name: _BasePiece
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfMass: {x: 0, y: 0}
-  _hasTouchedOtherPiece: 0
+  _isPlaced: 0
 --- !u!114 &6645184452499638849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,10 +118,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 7
-  m_LinearDrag: 2
-  m_AngularDrag: 0.5
-  m_GravityScale: 1.5
+  m_Mass: 4
+  m_LinearDrag: 1.5
+  m_AngularDrag: 0.2
+  m_GravityScale: 1.2
   m_Material: {fileID: 6200000, guid: 80a8b2251c7b2624c8dbb700e824cc42, type: 2}
   m_Interpolate: 2
   m_SleepingMode: 0
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 2084469745218854286}
   m_Layer: 6
   m_Name: Visual
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -6,14 +6,16 @@ namespace MiniclipTrick.Game.Piece
 {
     public class PieceCollision : MonoBehaviour
     {
-        private PieceController _piece;
+        private PieceController _thisPiece;
         private Collider2D[] _colliders;
 
-        public Action OnCollisionFirstTime;
+        public Action OnCollide;
+
+        private static readonly string TowerPieceTag = "TowerPiece";
 
         public void Initialize(PieceController controller)
         {
-            _piece = controller;
+            _thisPiece = controller;
             _colliders = GetComponentsInChildren<Collider2D>();
 
             SetCollidersTriggerStatus(true);
@@ -21,14 +23,15 @@ namespace MiniclipTrick.Game.Piece
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            print($"Peça: {gameObject.name} colidiu com {other.gameObject.name}");
-            
-            if (_piece.IsPlaced) return;
+            if (other.CompareTag(TowerPieceTag))
+            {
+                if (!other.attachedRigidbody.TryGetComponent(out TowerStructure structure) || _thisPiece.IsPlaced) return;
 
-            AvoidOverlap(other);
-            SetCollidersTriggerStatus(false);
-            
-            OnCollisionFirstTime?.Invoke();
+                AvoidOverlap(other);
+                SetCollidersTriggerStatus(false);
+
+                OnCollide?.Invoke();
+            }
         }
 
         /// <summary>
@@ -42,7 +45,7 @@ namespace MiniclipTrick.Game.Piece
                 ColliderDistance2D distance = _colliders[i].Distance(col);
                 if (distance.isOverlapped)
                 {
-                    _piece.transform.position += (Vector3)(distance.pointB - distance.pointA);
+                    _thisPiece.transform.position += (Vector3)(distance.pointB - distance.pointA);
                 }
             }
         }

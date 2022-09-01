@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 3025141106117233798}
   m_Layer: 6
   m_Name: Collider_3
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4717658819456945239}
   m_Layer: 6
   m_Name: Collider_1
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 3454466919157379206}
   m_Layer: 6
   m_Name: Collider_2
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

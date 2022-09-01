@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1234571278847762744}
   m_Layer: 6
   m_Name: Collider_1
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 8306605882054643474}
   m_Layer: 6
   m_Name: Collider_2
-  m_TagString: Untagged
+  m_TagString: TowerPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
