@@ -9,7 +9,7 @@ namespace MiniclipTrick.Game.Piece
     public class PiecesController : MonoBehaviour
     {
         [SerializeField]
-        private Piece[] _piecesPrefabs;
+        private PieceController[] _piecesPrefabs;
         [Space]
         [SerializeField]
         private Transform _pieceSpawnPoint;
@@ -19,12 +19,12 @@ namespace MiniclipTrick.Game.Piece
         [SerializeField]
         private Vector2 _spawnerRangePosition;
 
-        private List<Piece> _piecesPool;
-        private Piece _currentPiece;
+        private List<PieceController> _piecesPool;
+        private PieceController _currentPiece;
         private Vector3 _currentSpawnPosition;
         private PiecesCamera _piecesCamera;
         
-        public Piece CurrentPiece
+        public PieceController CurrentPiece
         {
             get => _currentPiece;
             private set => _currentPiece = value;
@@ -45,19 +45,20 @@ namespace MiniclipTrick.Game.Piece
         {
             if(_currentPiece == null || _currentPiece.IsPlaced) return;
 
-            _currentPiece.MoveDownwards();
+            _currentPiece.Movement.MoveDownwards();
         }
 
         public void SetupPiecesPool()
         {
-            _piecesPool ??= new List<Piece>();
+            _piecesPool ??= new List<PieceController>();
             
             int piecesCount = _piecesPrefabs.Length;
             
             for (int i = 0; i < piecesCount; i++)
             {
-                Piece newPiece = Instantiate(_piecesPrefabs[i], _pieceSpawnPoint);
-                newPiece.OnCollideWithPiece += OnPiecePlaced;
+                PieceController newPiece = Instantiate(_piecesPrefabs[i], _pieceSpawnPoint);
+                newPiece.OnPlacePiece += OnPiecePlaced;
+                newPiece.Initialize();
                 newPiece.gameObject.SetActive(false);
                 _piecesPool.Add(newPiece);
             }
@@ -65,19 +66,25 @@ namespace MiniclipTrick.Game.Piece
 
         public void SpawnPiece()
         {
+            CurrentPiece = GetPieceToSpawn();
+            CurrentPiece.gameObject.SetActive(true);
+        }
+
+        private PieceController GetPieceToSpawn()
+        {
             if (_currentPiece != null)
             {
                 _currentPiece.transform.SetParent(_placedPiecesHolder);
             }
             
-            CurrentPiece = _piecesPool.PopRandomItem();
+            PieceController newPiece = _piecesPool.PopRandomItem();
 
             if (_piecesPool.Count <= 1)
             {
                 SetupPiecesPool();
             }
-
-            CurrentPiece.gameObject.SetActive(true);
+            
+            return newPiece;
         }
 
         private void OnPiecePlaced()

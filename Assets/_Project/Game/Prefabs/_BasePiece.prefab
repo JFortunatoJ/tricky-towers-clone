@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2084469743997907560}
   - component: {fileID: 2084469743997907561}
+  - component: {fileID: 6645184452499638849}
   - component: {fileID: 5431683617528447442}
   - component: {fileID: 8951169211867810776}
   m_Layer: 6
@@ -79,14 +80,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc9c410da92d42458f44a30a0aac897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotations: []
   centerOfMass: {x: 0, y: 0}
-  _rigidbody: {fileID: 0}
-  _colliders: []
-  _isPlaced: 0
-  _layer:
-    serializedVersion: 2
-    m_Bits: 64
+  _hasTouchedOtherPiece: 0
+--- !u!114 &6645184452499638849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084469743997907567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75301ad891e9ca2448b88d008e626100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5431683617528447442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e78771fd2f7234b8cb3151d6b39519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionPoints: []
 --- !u!50 &8951169211867810776
 Rigidbody2D:
   serializedVersion: 4
@@ -112,7 +118,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 7
   m_LinearDrag: 2
   m_AngularDrag: 0.5
   m_GravityScale: 1.5

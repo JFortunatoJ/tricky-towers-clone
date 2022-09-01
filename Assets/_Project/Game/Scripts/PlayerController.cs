@@ -27,28 +27,28 @@ namespace MiniclipTrick.Game
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _piecesSpawner.CurrentPiece.Rotate();
+                _piecesSpawner.CurrentPiece.Movement.Rotate();
             }
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                _piecesSpawner.CurrentPiece.MoveHorizontally(-1);
+                _piecesSpawner.CurrentPiece.Movement.MoveHorizontally(-1);
             }
             
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                _piecesSpawner.CurrentPiece.MoveHorizontally(1);
+                _piecesSpawner.CurrentPiece.Movement.MoveHorizontally(1);
             }
 
             
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                _piecesSpawner.CurrentPiece.BoostSpeed();
+                _piecesSpawner.CurrentPiece.Movement.BoostSpeed();
             }
             
             if (Input.GetKeyUp(KeyCode.DownArrow))
             {
-                _piecesSpawner.CurrentPiece.ResetSpeed();
+                _piecesSpawner.CurrentPiece.Movement.ResetSpeed();
             }
         }
     }

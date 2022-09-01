@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PieceCollisionUtil
 {
+    //TODO: deletar
     public static List<RaycastHit2D> GetPossibleCollisions(List<Collider2D> colliderList, Vector3 direction,
         float distance, int layer)
     {
