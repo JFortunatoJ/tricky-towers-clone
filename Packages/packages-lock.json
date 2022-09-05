@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.liga.data-event": {
+      "version": "https://gitlab.com/LDJ/com.liga.data-event.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "764b6f0cb7d2a14b9ceeafdd60f7f606447da9cc"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.6",
       "depth": 1,
