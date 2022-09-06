@@ -6,7 +6,8 @@ TagManager:
   tags:
   - ship
   - asteroid
-  - DestroyPiece
+  - TowerPiece
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Piece
   - Base
   - DestroyPiece
-  - 
+  - EndLine
   - 
   - 
   - 
@@ -43,4 +44,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 415498809
+    locked: 0
+  - name: Tower
+    uniqueID: 4062791411
+    locked: 0
+  - name: Foreground
+    uniqueID: 2856497253
     locked: 0
