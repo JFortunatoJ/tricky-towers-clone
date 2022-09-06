@@ -15,6 +15,7 @@ namespace MiniclipTrick.Game.Player
 
         private int _maxPiecesLostAllowed;
         private bool _isPaused;
+        private bool _gameOver;
 
         private void OnEnable()
         {
@@ -45,7 +46,7 @@ namespace MiniclipTrick.Game.Player
 
         private void Update()
         {
-            if(_isPaused) return;
+            if(_isPaused || _gameOver) return;
             
             if (Input.GetKeyDown(KeyCode.T))
             {
@@ -122,7 +123,8 @@ namespace MiniclipTrick.Game.Player
 
         public void GameOver()
         {
-            //_piecesManager
+            _gameOver = true;
+            _piecesManager.StopSpawn();
         }
     }
 }

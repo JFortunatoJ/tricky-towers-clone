@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Blazewing.DataEvent;
 using MiniclipTrick.Game.Events;
 using MiniclipTrick.Game.Player;
+using MiniclipTrick.GameOver;
 using UnityEngine;
 
 namespace MiniclipTrick.Game
@@ -33,7 +34,13 @@ namespace MiniclipTrick.Game
 
         private void OnPlayerGameOver(OnPlayerGameOverEvent eventData)
         {
+            GameOverController.Show(eventData.isVictory ? VictoryScreenController.SCENE_NAME : DefeatScreenController.SCENE_NAME);
             print($"Jogador: {eventData.playerId} deu game over. Vitória: {eventData.isVictory}");
+
+            for (int i = 0; i < _playersList.Count; i++)
+            {
+                _playersList[i].GameOver();
+            }
         }
 
         private PlayerController GetPlayerById(string id)

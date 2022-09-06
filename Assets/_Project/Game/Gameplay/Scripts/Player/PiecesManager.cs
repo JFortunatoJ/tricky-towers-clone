@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Blazewing.DataEvent;
-using MiniclipTrick.Game.Events;
 using MiniclipTrick.Game.Piece;
 using MiniclipTrick.Game.Scriptables;
 using MiniclipTrick.Utility;
@@ -81,8 +79,12 @@ namespace MiniclipTrick.Game.Player
         
         public void StopSpawn()
         {
-            _currentPiece.DestroyPiece();
-            //_currentPiece 
+            CanSpawn = false;
+
+            if (!_currentPiece.IsPlaced)
+            {
+                _currentPiece.DestroyPiece();
+            }
         }
 
         private void InstantiateNewPiece(PieceController piecePrefab)
