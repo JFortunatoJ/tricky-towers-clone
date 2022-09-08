@@ -36,7 +36,7 @@ namespace MiniclipTrick.Game.Piece
             private set => _isLost = value;
         }
 
-        public void Initialize( Action<PieceController> onPiecePlaced, Action<PieceController> onPieceLost, Action onPieceReachEndLine)
+        public void Initialize( Action<PieceController> onPiecePlaced, Action<PieceController> onPieceLost)
         {
             Assert.IsNotNull(_movement);
             Assert.IsNotNull(_collision);

@@ -1,4 +1,4 @@
 public interface IShakeable
 {
-    void Shake();
+    void Shake(float duration, float strength, int vibrato);
 }

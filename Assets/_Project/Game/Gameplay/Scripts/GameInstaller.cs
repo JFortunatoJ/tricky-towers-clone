@@ -6,8 +6,7 @@ namespace MiniclipTrick.Game
     {
         public override void InstallBindings()
         {
-            Container.BindInstance(FindObjectOfType<PiecesCamera>());
-            //Container.Bind<IShakeable>().To<PiecesCamera>().AsSingle();
+            
         }
     }
 }

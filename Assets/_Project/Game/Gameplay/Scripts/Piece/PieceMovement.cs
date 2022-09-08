@@ -43,9 +43,10 @@ namespace MiniclipTrick.Game.Piece
             Rigidbody.bodyType = RigidbodyType2D.Dynamic;
         }
 
-        public void MoveHorizontally(int direction)
+        public void HorizontalStep(int direction)
         {
-            _currentPosition.x += HORIZONTAL_SENSITIVITY * direction;
+            float targetPosition = _currentPosition.x + HORIZONTAL_SENSITIVITY * direction;
+            _currentPosition.x = Mathf.Clamp(targetPosition, 0, Screen.width / Screen.dpi);
             _transform.position = _currentPosition;
         }
 

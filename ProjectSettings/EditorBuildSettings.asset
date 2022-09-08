@@ -23,4 +23,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Game/GameOver/Defeat/Scenes/GameOver_Defeat.unity
     guid: 90dad778e4808c248945fee6f6322317
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 5bbf43a0aabb02143abb9ffdf5aa9c82, type: 2}

@@ -7,33 +7,21 @@ namespace MiniclipTrick.Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public string playerId;
-        [SerializeField]
-        private PiecesManager _piecesManager;
-        [SerializeField]
-        private EndLineController _endLine;
-
-        private int _maxPiecesLostAllowed;
-        private bool _isPaused;
-        private bool _gameOver;
-
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
+            DataEvent.Register<OnGameStartedEvent>(OnGameStarted);
             DataEvent.Register<OnPauseEvent>(OnPauseEvent);
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
+            DataEvent.Unregister<OnGameStartedEvent>(OnGameStarted);
             DataEvent.Unregister<OnPauseEvent>(OnPauseEvent);
         }
 
-        private void OnPauseEvent(OnPauseEvent eventData)
+        public void Init(string playerId, int maxPiecesLostAllowed)
         {
-            _isPaused = eventData.isPaused;
-        }
-
-        public void Init(int maxPiecesLostAllowed)
-        {
+            this.playerId = playerId;
             _maxPiecesLostAllowed = maxPiecesLostAllowed;
             
             _endLine.OnCountdownStarted += OnCountdownStarted;
@@ -41,54 +29,34 @@ namespace MiniclipTrick.Game.Player
             _endLine.OnCountdownComplete += OnCountdownComplete;
 
             _piecesManager.Init(OnPiecePlaced, OnPieceLost);
+        }
+        
+        protected virtual void OnGameStarted(OnGameStartedEvent obj)
+        {
             _piecesManager.SpawnPiece();
         }
-
-        private void Update()
+        
+        protected virtual void OnPauseEvent(OnPauseEvent eventData)
         {
-            if(_isPaused || _gameOver) return;
-            
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                _piecesManager.SpawnPiece();
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _piecesManager.CurrentPiece.Movement.Rotate();
-            }
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                _piecesManager.CurrentPiece.Movement.MoveHorizontally(-1);
-            }
-            
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                _piecesManager.CurrentPiece.Movement.MoveHorizontally(1);
-            }
-
-            
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                _piecesManager.CurrentPiece.Movement.BoostSpeed();
-            }
-            
-            if (Input.GetKeyUp(KeyCode.DownArrow))
-            {
-                _piecesManager.CurrentPiece.Movement.ResetSpeed();
-            }
+            _isPaused = eventData.isPaused;
+        }
+        
+        protected bool CanPlay()
+        {
+            return !_isPaused && !_gameOver;
         }
 
-        private void OnPiecePlaced(PieceController piece)
+        protected virtual void OnPiecePlaced(PieceController piece)
         {
+            _piecesManager.SetPiecePlacedParent(piece);
+            
             if (!_endLine.pieceDetectorRay.CheckPiece())
             {
                 _piecesManager.SpawnPiece();
             }
         }
 
-        private void OnPieceLost(PieceController piece)
+        protected virtual void OnPieceLost(PieceController piece)
         {
             _piecesManager.PiecesLost++;
 
@@ -105,18 +73,18 @@ namespace MiniclipTrick.Game.Player
             DataEvent.Notify(new OnPlayerGameOverEvent(playerId, false));
         }
         
-        private void OnCountdownStarted()
+        protected virtual void OnCountdownStarted()
         {
             _piecesManager.CanSpawn = false;
         }
         
-        private void OnCountdownCanceled()
+        protected virtual void OnCountdownCanceled()
         {
             _piecesManager.CanSpawn = true;
             _piecesManager.SpawnPiece();
         }
         
-        private void OnCountdownComplete()
+        protected virtual void OnCountdownComplete()
         {
             DataEvent.Notify(new OnPlayerGameOverEvent(playerId, true));
         }
@@ -126,5 +94,15 @@ namespace MiniclipTrick.Game.Player
             _gameOver = true;
             _piecesManager.StopSpawn();
         }
+        
+        public string playerId;
+        [SerializeField]
+        protected PiecesManager _piecesManager;
+        [SerializeField]
+        protected EndLineController _endLine;
+
+        protected int _maxPiecesLostAllowed;
+        protected bool _isPaused;
+        protected bool _gameOver;
     }
 }

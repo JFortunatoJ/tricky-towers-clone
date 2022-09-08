@@ -10,31 +10,45 @@ namespace MiniclipTrick.Game
     public class GameManager : MonoBehaviour
     {
         [SerializeField]
-        private PlayerController _player_1;
+        protected Transform _playersHolder;
 
-        private List<PlayerController> _playersList;
+        protected List<PlayerController> _playersList;
 
-        private void Start()
-        {
-            _playersList = new List<PlayerController>();
-            _playersList.Add(_player_1);
-            
-            _player_1.Init(5);
-        }
-
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             DataEvent.Register<OnPlayerGameOverEvent>(OnPlayerGameOver);
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             DataEvent.Unregister<OnPlayerGameOverEvent>(OnPlayerGameOver);
         }
 
-        private void OnPlayerGameOver(OnPlayerGameOverEvent eventData)
+        private void Start()
         {
-            GameOverController.Show(eventData.isVictory ? VictoryScreenController.SCENE_NAME : DefeatScreenController.SCENE_NAME);
+            InstantiatePlayers();
+        }
+
+        protected virtual void StartGame()
+        {
+            DataEvent.Notify(new OnGameStartedEvent());
+        }
+
+        protected virtual void InstantiatePlayers()
+        {
+        }
+
+        protected virtual void OnPlayerInstantiated(PlayerController player)
+        {
+            _playersList ??= new List<PlayerController>();
+            _playersList.Add(player);
+        }
+
+        protected virtual void OnPlayerGameOver(OnPlayerGameOverEvent eventData)
+        {
+            GameOverController.Show(eventData.isVictory
+                ? VictoryScreenController.SCENE_NAME
+                : DefeatScreenController.SCENE_NAME);
             print($"Jogador: {eventData.playerId} deu game over. Vitória: {eventData.isVictory}");
 
             for (int i = 0; i < _playersList.Count; i++)
@@ -43,7 +57,7 @@ namespace MiniclipTrick.Game
             }
         }
 
-        private PlayerController GetPlayerById(string id)
+        protected PlayerController GetPlayerById(string id)
         {
             return _playersList.Find(controller => controller.playerId == id);
         }
