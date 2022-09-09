@@ -28,12 +28,12 @@ namespace MiniclipTrick.GameOver
 
         public virtual void Show()
         {
-            _canvasGroup.DOFade(1, _animationDuration);
+            _canvasGroup.DOFade(1, _animationDuration).SetUpdate(true);
         }
 
         public virtual void Hide()
         {
-            _canvasGroup.DOFade(0, _animationDuration);
+            _canvasGroup.DOFade(0, _animationDuration).SetUpdate(true);
         }
     }
 }

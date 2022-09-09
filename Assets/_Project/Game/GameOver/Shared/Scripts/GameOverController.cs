@@ -29,6 +29,8 @@ namespace MiniclipTrick.GameOver
 
         protected virtual void Start()
         {
+            Time.timeScale = 0;
+            
             _view.OnPlayAgainButtonClick += PlayAgain;
             _view.OnMainMenuButtonClick += ReturnToMainMenu;
 
@@ -43,7 +45,7 @@ namespace MiniclipTrick.GameOver
 
         protected virtual void ReturnToMainMenu()
         {
-            SceneController.LoadScene("StartMenu", LoadSceneMode.Single);
+            SceneController.LoadScene("StartMenu", LoadSceneMode.Single, () => Time.timeScale = 1);
         }
     }
 }

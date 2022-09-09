@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 88
+  controlID: 63
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -218,8 +218,8 @@ MonoBehaviour:
     y: 0
     width: 347
     height: 939
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 89
+  controlID: 64
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -574,7 +574,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: fefaffff
+      m_ExpandedIDs: 3ec2ffffe6c2ffffe4c5fffff6c5ffff08c6ffff1cc6ffff60c6ffffb8c6ffffc6c6ffffe2c6ffff22cfffffcecfffffaad2ffffbcd2ffffced2ffffe2d2ffff26d3ffff7ed3ffff8cd3ffffa8d3ffffe6d3ffff46d5fffff8d5fffff4d6ffff90ebffffd4f6ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -639,36 +639,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Project/Game/Gameplay/Scripts/Settings
+    - Assets/_Project/Game/Gameplay/Scripts/Managers
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Project/Game/Gameplay/Scripts/Settings
+  - Assets/_Project/Game/Gameplay/Scripts/Managers
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Projetos\tetris-miniclip
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 686f0000
-    m_LastClickedID: 28520
-    m_ExpandedIDs: 00000000226b0000246b0000286b00002a6b00002c6b00002e6b00006a6d0000846d00008c6d0000
+    m_SelectedIDs: 46760000
+    m_LastClickedID: 30278
+    m_ExpandedIDs: 00000000e2730000e4730000e6730000e8730000ea730000ec7300002076000026760000387600003a76000050760000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Scenes
-      m_OriginalName: Scenes
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 28042
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
@@ -682,7 +682,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000226b0000246b0000266b0000286b00002a6b00002c6b00002e6b0000
+    m_ExpandedIDs: 00000000e2730000e4730000e6730000e8730000ea730000ec730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -713,18 +713,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 84440000a644000000000000903f0000783e0000ae5d0000be5c0000925d000012650000266e000060e2ffff44870000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: PlayerInputActions
+      m_OriginalName: PlayerInputActions
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 38276
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_CreateAssetUtility:
