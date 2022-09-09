@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 19
+  controlID: 88
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 94
+  controlID: 97
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 20
+  controlID: 89
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -295,8 +295,8 @@ MonoBehaviour:
     y: 0
     width: 584
     height: 556
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -574,7 +574,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: f255faff9e56faff9a59faffa859faffb659faffc659faff065afaff5a5afaff785afaff8c5afaff066bfaffd08afaffda8afaffee8afaff7e8bfaffaa8dfaffb48dfaffc88dfaffd290fafffe92faff0893faff1c93faff3a96faff3c9efaff409efaff469efaff509efaff5aa1faffc8a3faffd2a3faffe6a3faff04a7faff76abfaff90abfaff94abfaff9aabfaffa4abfaff48acfaff0ab5faffb4b5faff8eb8faff9cb8faffaab8faffbab8fafffab8faff4eb9faff6cb9faff80b9faff76f4fafff8f6faffdc06fbffca13fbff5c19fbff4628fbffc22cfbffc237fbff627afbffd48dfbff848ffbff2490fbff8690fbff9490fbffa490fbffe490fbff2691fbff3491fbff4c91fbff909cfbffe49efbff909ffbff74a2fbff82a2fbff92a2fbffd2a2fbff10a3fbff22a3fbff3aa3fbff86d4fbffb0d5fbff6adcfbff70dcfbff78dcfbff9adcfbff9cddfbffc6e4fbffcae7fbff76e8fbff54ebfbff62ebfbff72ebfbffb2ebfbff10ecfbff22ecfbff3aecfbffd2ecfbff0afafbffbefcfbffe6fdfbffc443fcff2680fcff3485fcffc089fcff248ffcff1891fcff1e91fcff2691fcffd095fcff1497fcff1a97fcff2297fcff289efcff689efcff6e9efcff769efcff8abefcff90befcff98befcff9038feffb238feffa839feffae39feffb639feffe042fefffa42fefffe42feff0443feff0c43feffd64bfeffac4dfeffc64dfeffd84dfeff628cfeffae8efeffb48efeffbc8efeffa260ffffaa60ffffcc60ffffc668ffff1ac4ffff2cc5ffffd0dcfffff2ddffff04fbffffb66a000020a4000058a400007ca70000b4a70000b8a700009eb00000dcb00000e0b0000082fe000090fe0000cefe000056160100841601008a160100ee2a01000a2b01002c2b0100a8360100103801002c4e01000e4f0100684f01008e500100cc51010056530100b8540100
+      m_ExpandedIDs: fefaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -627,7 +627,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_SearchFilter:
-    m_NameFilter: Piececol
+    m_NameFilter: 
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -639,33 +639,33 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Project/Game/Gameplay/Scriptables
+    - Assets/_Project/Game/Gameplay/Scripts/Settings
     m_Globs: []
-    m_OriginalText: Piececol
+    m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Project/Game/Gameplay/Scriptables
+  - Assets/_Project/Game/Gameplay/Scripts/Settings
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Projetos\tetris-miniclip
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 1e6e0000
-    m_LastClickedID: 28190
-    m_ExpandedIDs: 00000000cc6b0000ce6b0000d26b0000d46b0000d66b0000d86b0000dc6b0000e06b0000e26b0000206e0000266e0000348900004c300100
+    m_SelectedIDs: 686f0000
+    m_LastClickedID: 28520
+    m_ExpandedIDs: 00000000226b0000246b0000286b00002a6b00002c6b00002e6b00006a6d0000846d00008c6d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Gameplay
-      m_OriginalName: Gameplay
+      m_Name: Scenes
+      m_OriginalName: Scenes
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 27604
+      m_UserData: 28042
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -682,7 +682,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000cc6b0000ce6b0000d06b0000d26b0000d46b0000d66b0000d86b0000da6b0000dc6b0000de6b0000e06b0000e26b0000
+    m_ExpandedIDs: 00000000226b0000246b0000266b0000286b00002a6b00002c6b00002e6b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
