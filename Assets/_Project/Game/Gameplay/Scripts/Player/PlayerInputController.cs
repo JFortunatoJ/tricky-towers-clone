@@ -43,6 +43,7 @@ namespace MiniclipTrick.Game.Player
         {
             Vector2 value = obj.ReadValue<Vector2>();
             
+            #if !UNITY_EDITOR
             float diff = value.x - _previousPos;
             int direction = diff < 0 ? -1 : 1;
             if (Mathf.Abs(diff) > Screen.width / _dragDeadZone)
@@ -50,6 +51,9 @@ namespace MiniclipTrick.Game.Player
                 _previousPos = value.x;
                 onMoveHorizontallyInput?.Invoke(direction);
             }
+            #else
+            onMoveHorizontallyInput?.Invoke(value.x);
+            #endif
         }
         
         private bool PointerOverUI()
