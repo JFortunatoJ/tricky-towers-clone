@@ -5,6 +5,9 @@ namespace MiniclipTrick.Game.Piece
 {
     public class PieceCollision : MonoBehaviour
     {
+        [SerializeField]
+        private ParticleSystem _puffParticles;
+        
         private PieceController _thisPiece;
         private Collider2D[] _colliders;
 
@@ -17,7 +20,7 @@ namespace MiniclipTrick.Game.Piece
 
             SetCollidersTriggerStatus(true);
         }
-
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag(TowerPieceTag)) return;
@@ -42,6 +45,7 @@ namespace MiniclipTrick.Game.Piece
                 if (distance.isOverlapped)
                 {
                     _thisPiece.transform.position += (Vector3)(distance.pointB - distance.pointA);
+                    PlayPuffParticles(distance.pointA);
                 }
             }
         }
@@ -52,6 +56,12 @@ namespace MiniclipTrick.Game.Piece
             {
                 _colliders[i].isTrigger = status;
             }
+        }
+
+        private void PlayPuffParticles(Vector3 position)
+        {
+            _puffParticles.transform.position = position;
+            _puffParticles.Play();
         }
     }
 }

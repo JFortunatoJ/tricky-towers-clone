@@ -1,4 +1,4 @@
-using Blazewing.DataEvent;
+using Blazewing;
 using MiniclipTrick.Game.Events;
 using MiniclipTrick.Game.Piece;
 using UnityEngine;

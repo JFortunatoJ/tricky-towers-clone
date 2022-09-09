@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace MiniclipTrick.Game.Player
@@ -8,6 +10,9 @@ namespace MiniclipTrick.Game.Player
     {
         public void Init()
         {
+            _eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+            _rayResults = new List<RaycastResult>();
+            
             _playerInput = new PlayerInputActions();
 
             _playerInput.PiecesActions.Rotate.performed += OnRotatePiece;
@@ -24,6 +29,8 @@ namespace MiniclipTrick.Game.Player
 
         public void OnRotatePiece(InputAction.CallbackContext obj)
         {
+            if(PointerOverUI()) return;
+            
             onRotateInput?.Invoke();
         }
         
@@ -45,6 +52,23 @@ namespace MiniclipTrick.Game.Player
             }
         }
         
+        private bool PointerOverUI()
+        {
+            _eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            EventSystem.current.RaycastAll(_eventDataCurrentPosition, _rayResults);
+
+            List<RectTransform> uiResults = new List<RectTransform>();
+            foreach (var rayResult in _rayResults)
+            {
+                if (rayResult.gameObject.TryGetComponent(out RectTransform rect))
+                {
+                    uiResults.Add(rect);
+                }
+            }
+
+            return uiResults.Count > 0;
+        }
+
         [SerializeField]
         private float _dragDeadZone = 10f;
         
@@ -54,5 +78,9 @@ namespace MiniclipTrick.Game.Player
         public Action onRotateInput;
         public Action<float> onMoveHorizontallyInput;
         public Action<bool> onSpeedUpPiece;
+        
+        private PointerEventData _eventDataCurrentPosition;
+        private List<RaycastResult> _rayResults;
+
     }
 }

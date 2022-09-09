@@ -1,12 +1,19 @@
-using Blazewing.DataEvent;
+using Blazewing;
 using MiniclipTrick.Game.Events;
 using MiniclipTrick.Game.Piece;
 using UnityEngine;
+using Zenject;
 
 namespace MiniclipTrick.Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        [Inject]
+        public void Construct(LevelSettings settings)
+        {
+            _settings = settings;
+        }
+        
         protected virtual void OnEnable()
         {
             DataEvent.Register<OnGameStartedEvent>(OnGameStarted);
@@ -19,10 +26,9 @@ namespace MiniclipTrick.Game.Player
             DataEvent.Unregister<OnPauseEvent>(OnPauseEvent);
         }
 
-        public void Init(string playerId, int maxPiecesLostAllowed)
+        public virtual void Init(string playerId)
         {
             this.playerId = playerId;
-            _maxPiecesLostAllowed = maxPiecesLostAllowed;
             
             _endLine.OnCountdownStarted += OnCountdownStarted;
             _endLine.OnCountdownCanceled += OnCountdownCanceled;
@@ -41,13 +47,15 @@ namespace MiniclipTrick.Game.Player
             _isPaused = eventData.isPaused;
         }
         
-        protected bool CanPlay()
+        protected virtual bool CanPlay()
         {
             return !_isPaused && !_gameOver;
         }
 
         protected virtual void OnPiecePlaced(PieceController piece)
         {
+            if(_gameOver) return;
+            
             _piecesManager.SetPiecePlacedParent(piece);
             
             if (!_endLine.pieceDetectorRay.CheckPiece())
@@ -58,18 +66,29 @@ namespace MiniclipTrick.Game.Player
 
         protected virtual void OnPieceLost(PieceController piece)
         {
+            if(_gameOver) return;
+            
             _piecesManager.PiecesLost++;
 
-            if (_piecesManager.PiecesLost < _maxPiecesLostAllowed)
+            if (_settings.againstCPU)
             {
                 if (!piece.IsPlaced)
                 {
                     _piecesManager.SpawnPiece();
                 }
-                
                 return;
             }
             
+            if (_piecesManager.PiecesLost < _settings.piecesLostToGameOver)
+            {
+                if (!piece.IsPlaced)
+                {
+                    _piecesManager.SpawnPiece();
+                }
+
+                return;
+            }
+
             DataEvent.Notify(new OnPlayerGameOverEvent(playerId, false));
         }
         
@@ -101,7 +120,7 @@ namespace MiniclipTrick.Game.Player
         [SerializeField]
         protected EndLineController _endLine;
 
-        protected int _maxPiecesLostAllowed;
+        protected LevelSettings _settings;
         protected bool _isPaused;
         protected bool _gameOver;
     }

@@ -1,45 +1,13 @@
 using System;
-using Unity.Collections;
-using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace MiniclipTrick.Game.Piece
 {
     public class PieceController : TowerStructure
     {
-        [SerializeField]
-        private PieceMovement _movement;
-        [SerializeField]
-        private PieceCollision _collision;
-        [Space]
-        [SerializeField]
-        [ReadOnly]
-        private bool _isPlaced;
-        [SerializeField]
-        [ReadOnly] private bool _isLost;
-
-        public PieceMovement Movement => _movement;
-        public PieceCollision Collision => _collision;
-
-        public Action<PieceController> OnPiecePlaced;
-        public Action<PieceController> OnPieceLost;
-        
-        public bool IsPlaced
+        public void Initialize(Action<PieceController> onPiecePlaced, Action<PieceController> onPieceLost)
         {
-            get => _isPlaced; 
-            private set => _isPlaced = value;
-        }
-
-        public bool IsLost
-        {
-            get => _isLost;
-            private set => _isLost = value;
-        }
-
-        public void Initialize( Action<PieceController> onPiecePlaced, Action<PieceController> onPieceLost)
-        {
-            Assert.IsNotNull(_movement);
-            Assert.IsNotNull(_collision);
+            Movement = GetComponent<PieceMovement>();
+            Collision = GetComponent<PieceCollision>();
             
             Movement.Initialize(this);
             Collision.Initialize(this);
@@ -70,5 +38,15 @@ namespace MiniclipTrick.Game.Piece
         {
             Destroy(gameObject);
         }
+        
+        public PieceMovement Movement { get; private set; }
+        public PieceCollision Collision { get; private set; }
+
+        public Action<PieceController> OnPiecePlaced;
+        public Action<PieceController> OnPieceLost;
+        
+        public bool IsPlaced { get; private set; }
+
+        public bool IsLost { get; private set; }
     }
 }

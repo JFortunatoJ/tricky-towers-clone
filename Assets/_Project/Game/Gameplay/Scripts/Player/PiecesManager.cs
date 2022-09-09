@@ -52,7 +52,7 @@ namespace MiniclipTrick.Game.Player
         {
             CanSpawn = false;
 
-            if (!_currentPiece.IsPlaced)
+            if (_currentPiece != null && !_currentPiece.IsPlaced)
             {
                 _currentPiece.DestroyPiece();
                 _currentPiece = null;
@@ -66,7 +66,7 @@ namespace MiniclipTrick.Game.Player
 
         private void InstantiateNewPiece(PieceController piecePrefab)
         {
-            PieceController newPiece = Instantiate(piecePrefab, _pieceSpawnPoint);
+            PieceController newPiece = Instantiate(piecePrefab, _pieceSpawnPoint, false);
             newPiece.Initialize(_onPiecePlaced, _onPieceLost);
             newPiece.gameObject.SetActive(false);
             _piecesPool.Add(newPiece);
@@ -83,7 +83,6 @@ namespace MiniclipTrick.Game.Player
             
             return newPiece;
         }
-        
         
         [SerializeField]
         private PiecesContainerScriptable _piecesContainer;
@@ -107,6 +106,7 @@ namespace MiniclipTrick.Game.Player
             get => _currentPiece;
             private set => _currentPiece = value;
         }
+        
         public int PiecesLost { get; set; }
         
         public bool CanSpawn { get; set; }

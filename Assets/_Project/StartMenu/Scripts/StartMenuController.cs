@@ -1,3 +1,4 @@
+using Blazewing;
 using MiniclipTrick.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,11 +24,13 @@ namespace MiniclipTrick.StartMenu
         private void OnOnePlayerButtonClick()
         {
             SceneController.LoadScene("Gameplay", LoadSceneMode.Single);
+            DataController.Add(new GameMode("Gameplay"));
         }
         
         private void OnPlayerVsAiButtonClick()
         {
-            
+            SceneController.LoadScene("Gameplay_PVE", LoadSceneMode.Single);
+            DataController.Add(new GameMode("Gameplay_PVE"));
         }
     }
 }

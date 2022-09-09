@@ -1,41 +1,37 @@
 using UnityEngine;
+using Zenject;
 
 namespace MiniclipTrick.Game.Piece
 {
     public class PieceMovement : MonoBehaviour
     {
-        [SerializeField]
-        private Rigidbody2D _rigidbody;
-        [SerializeField]
-        private Vector2 centerOfMass;
-
-        public Rigidbody2D Rigidbody => _rigidbody;
-        
-        private PieceController _thisPiece;
-        private Transform _transform;
-        private float _currentSpeed;
-
-        //Cacheando vetor de rotação porque Vector3.foward instancia um novo vetor;
-        private static readonly float HORIZONTAL_SENSITIVITY = 0.5f;
-        private static readonly float VERTICAL_SENSITIVITY = .7f;
-        private static readonly float NORMAL_SPEED = 4f;
-        private static readonly float BOOST_SPEED = 12f;
-        //TODO: editar esse valores pelo editor
-
-        private static readonly Vector3 ForwardVector = Vector3.forward;
-
-        private Vector3 _currentPosition;
+        [Inject]
+        public void Construct(PiecesSettings settings)
+        {
+            _settings = settings;
+        }
 
         public void Initialize(PieceController controller)
         {
+            Rigidbody = GetComponent<Rigidbody2D>();
+            
             _thisPiece = controller;
             
             Rigidbody.WakeUp();
             Rigidbody.centerOfMass = centerOfMass;
+            Rigidbody.gravityScale = _settings.GravityMultiplier;
             
             _transform = transform;
-            _currentSpeed = NORMAL_SPEED;
-            _currentPosition = _transform.position;
+            _centerPosition = _transform.position.x;
+            _currentSpeed = _settings.NormalDescendSpeed;
+            _currentPosition = _transform.localPosition;
+
+            _screenHalfWorldSize = Screen.currentResolution.height / Screen.dpi;
+            /*
+            print(_screenHalfWorldSize);
+            print(Screen.currentResolution.height);
+            print(Screen.currentResolution.width);
+            */
         }
 
         public void EnablePhysics()
@@ -45,15 +41,15 @@ namespace MiniclipTrick.Game.Piece
 
         public void HorizontalStep(int direction)
         {
-            float targetPosition = _currentPosition.x + HORIZONTAL_SENSITIVITY * direction;
-            _currentPosition.x = Mathf.Clamp(targetPosition, 0, Screen.width / Screen.dpi);
-            _transform.position = _currentPosition;
+            float targetPosition = _currentPosition.x + _settings.HorizontalStep * direction;
+            _currentPosition.x = Mathf.Clamp(targetPosition, -_screenHalfWorldSize, _screenHalfWorldSize);
+            _transform.localPosition = _currentPosition;
         }
 
         public void MoveDownwards()
         {
-            _currentPosition.y += -VERTICAL_SENSITIVITY * (Time.fixedDeltaTime * _currentSpeed);
-            _transform.position = _currentPosition;
+            _currentPosition.y -= Time.deltaTime * _currentSpeed;
+            _transform.localPosition = _currentPosition;
         }
 
         public void Rotate()
@@ -63,12 +59,34 @@ namespace MiniclipTrick.Game.Piece
 
         public void BoostSpeed()
         {
-            _currentSpeed = Mathf.Clamp(_currentSpeed + (Time.deltaTime * 20f), NORMAL_SPEED, BOOST_SPEED);
+            _currentSpeed = Mathf.Clamp(_currentSpeed + (Time.deltaTime * 20f), _settings.NormalDescendSpeed, _settings.BoostDescendSpeed);
         }
 
         public void ResetSpeed()
         {
-            _currentSpeed = NORMAL_SPEED;
+            _currentSpeed = _settings.NormalDescendSpeed;
         }
+
+        [SerializeField]
+        private Vector2 centerOfMass;
+
+        public Rigidbody2D Rigidbody { get; private set; }
+
+        public Vector3 LocalEulerAngles => _transform.localEulerAngles;
+
+        public Vector3 Position => _transform.position;
+        
+        public Vector3 LocalPosition => _transform.localPosition;
+
+        private PiecesSettings _settings;
+        private PieceController _thisPiece;
+        private Transform _transform;
+        private float _currentSpeed;
+        private float _screenHalfWorldSize;
+
+        private static readonly Vector3 ForwardVector = Vector3.forward;
+
+        private Vector3 _currentPosition;
+        private float _centerPosition;
     }
 }

@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.liga.data-event": "https://gitlab.com/LDJ/com.liga.data-event.git",
     "com.unity.addressables": "1.19.19",
     "com.unity.cinemachine": "2.9.1",
     "com.unity.collab-proxy": "1.17.1",
