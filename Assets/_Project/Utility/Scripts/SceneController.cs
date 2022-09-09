@@ -6,10 +6,10 @@ namespace MiniclipTrick.Utility
     public class SceneController
     {
         public static void LoadScene(string nextScene, LoadSceneMode mode = LoadSceneMode.Additive,
-            Action callback = null, bool useFade = true)
+            Action callback = null, bool useFade = true, bool loadExistingScene = false)
         {
             var scene = SceneManager.GetSceneByName(nextScene);
-            if (!scene.isLoaded)
+            if (!scene.isLoaded || loadExistingScene)
             {
                 if (useFade)
                 {

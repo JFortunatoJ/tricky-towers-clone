@@ -51,7 +51,6 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 01524da43cc10b642a66ceed242a0057, type: 3}
     - {fileID: 2800000, guid: 598f564462c8acd419f300645a3e121e, type: 3}
     - {fileID: 2800000, guid: 6f51fe7ede32ef04bb11a019cc0404df, type: 3}
-    - {fileID: 2800000, guid: b4eefb7da06c2ee41998877858e477a9, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -63,7 +62,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 01524da43cc10b642a66ceed242a0057, type: 3}
   - {fileID: 21300000, guid: 67807b5ba86812c48b18a86f2e425556, type: 3}
   - {fileID: 21300000, guid: f8c499cce06c33a4ba356e186b881f4f, type: 3}
-  - {fileID: 21300000, guid: b4eefb7da06c2ee41998877858e477a9, type: 3}
   - {fileID: 21300000, guid: 6f51fe7ede32ef04bb11a019cc0404df, type: 3}
   m_PackedSpriteNamesToIndex:
   - tetris4
@@ -72,7 +70,6 @@ SpriteAtlas:
   - tetris5
   - tetris3
   - tetris2
-  - tetris8
   - tetris7
   m_RenderDataMap: {}
   m_Tag: PiecesAtlas

@@ -1,122 +1,109 @@
-using Blazewing.DataEvent;
+using Blazewing;
 using MiniclipTrick.Game.Events;
 using MiniclipTrick.Game.Piece;
 using UnityEngine;
+using Zenject;
 
 namespace MiniclipTrick.Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public string playerId;
-        [SerializeField]
-        private PiecesManager _piecesManager;
-        [SerializeField]
-        private EndLineController _endLine;
-
-        private int _maxPiecesLostAllowed;
-        private bool _isPaused;
-        private bool _gameOver;
-
-        private void OnEnable()
+        [Inject]
+        public void Construct(LevelSettings settings)
         {
+            _settings = settings;
+        }
+        
+        protected virtual void OnEnable()
+        {
+            DataEvent.Register<OnGameStartedEvent>(OnGameStarted);
             DataEvent.Register<OnPauseEvent>(OnPauseEvent);
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
+            DataEvent.Unregister<OnGameStartedEvent>(OnGameStarted);
             DataEvent.Unregister<OnPauseEvent>(OnPauseEvent);
         }
 
-        private void OnPauseEvent(OnPauseEvent eventData)
+        public virtual void Init(string playerId)
         {
-            _isPaused = eventData.isPaused;
-        }
-
-        public void Init(int maxPiecesLostAllowed)
-        {
-            _maxPiecesLostAllowed = maxPiecesLostAllowed;
+            this.playerId = playerId;
             
             _endLine.OnCountdownStarted += OnCountdownStarted;
             _endLine.OnCountdownCanceled += OnCountdownCanceled;
             _endLine.OnCountdownComplete += OnCountdownComplete;
 
             _piecesManager.Init(OnPiecePlaced, OnPieceLost);
+        }
+        
+        protected virtual void OnGameStarted(OnGameStartedEvent obj)
+        {
             _piecesManager.SpawnPiece();
         }
-
-        private void Update()
+        
+        protected virtual void OnPauseEvent(OnPauseEvent eventData)
         {
-            if(_isPaused || _gameOver) return;
-            
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                _piecesManager.SpawnPiece();
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _piecesManager.CurrentPiece.Movement.Rotate();
-            }
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                _piecesManager.CurrentPiece.Movement.MoveHorizontally(-1);
-            }
-            
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                _piecesManager.CurrentPiece.Movement.MoveHorizontally(1);
-            }
-
-            
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                _piecesManager.CurrentPiece.Movement.BoostSpeed();
-            }
-            
-            if (Input.GetKeyUp(KeyCode.DownArrow))
-            {
-                _piecesManager.CurrentPiece.Movement.ResetSpeed();
-            }
+            _isPaused = eventData.isPaused;
+        }
+        
+        protected virtual bool CanPlay()
+        {
+            return !_isPaused && !_gameOver;
         }
 
-        private void OnPiecePlaced(PieceController piece)
+        protected virtual void OnPiecePlaced(PieceController piece)
         {
+            if(_gameOver) return;
+            
+            _piecesManager.SetPiecePlacedParent(piece);
+            
             if (!_endLine.pieceDetectorRay.CheckPiece())
             {
                 _piecesManager.SpawnPiece();
             }
         }
 
-        private void OnPieceLost(PieceController piece)
+        protected virtual void OnPieceLost(PieceController piece)
         {
+            if(_gameOver) return;
+            
             _piecesManager.PiecesLost++;
 
-            if (_piecesManager.PiecesLost < _maxPiecesLostAllowed)
+            if (_settings.againstCPU)
             {
                 if (!piece.IsPlaced)
                 {
                     _piecesManager.SpawnPiece();
                 }
-                
                 return;
             }
             
+            if (_piecesManager.PiecesLost < _settings.piecesLostToGameOver)
+            {
+                if (!piece.IsPlaced)
+                {
+                    _piecesManager.SpawnPiece();
+                }
+
+                return;
+            }
+
             DataEvent.Notify(new OnPlayerGameOverEvent(playerId, false));
         }
         
-        private void OnCountdownStarted()
+        protected virtual void OnCountdownStarted()
         {
             _piecesManager.CanSpawn = false;
         }
         
-        private void OnCountdownCanceled()
+        protected virtual void OnCountdownCanceled()
         {
             _piecesManager.CanSpawn = true;
             _piecesManager.SpawnPiece();
         }
         
-        private void OnCountdownComplete()
+        protected virtual void OnCountdownComplete()
         {
             DataEvent.Notify(new OnPlayerGameOverEvent(playerId, true));
         }
@@ -126,5 +113,15 @@ namespace MiniclipTrick.Game.Player
             _gameOver = true;
             _piecesManager.StopSpawn();
         }
+        
+        public string playerId;
+        [SerializeField]
+        protected PiecesManager _piecesManager;
+        [SerializeField]
+        protected EndLineController _endLine;
+
+        protected LevelSettings _settings;
+        protected bool _isPaused;
+        protected bool _gameOver;
     }
 }

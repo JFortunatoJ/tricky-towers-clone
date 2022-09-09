@@ -1,7 +1,9 @@
-using Blazewing.DataEvent;
+using Blazewing;
 using MiniclipTrick.Game.Events;
+using MiniclipTrick.Load;
 using MiniclipTrick.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MiniclipTrick.Game.Pause
 {
@@ -44,10 +46,13 @@ namespace MiniclipTrick.Game.Pause
 
         private void OnRestart()
         {
+            string sceneName = DataController.Exist<GameMode>() ? DataController.Get<GameMode>().sceneName : "StartMenu";
+            LoadSceneController.LoadScene(sceneName);
         }
 
         private void OnExit()
         {
+            SceneController.LoadScene("StartMenu", LoadSceneMode.Single, callback:() => Time.timeScale = 1);
         }
     }
 }

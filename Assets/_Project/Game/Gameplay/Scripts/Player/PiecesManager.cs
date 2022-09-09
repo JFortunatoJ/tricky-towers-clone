@@ -9,35 +9,6 @@ namespace MiniclipTrick.Game.Player
 {
     public class PiecesManager : MonoBehaviour
     {
-        [SerializeField]
-        private PiecesContainerScriptable _piecesContainer;
-        [Space]
-        [SerializeField]
-        private Transform _pieceSpawnPoint;
-        [SerializeField]
-        private Transform _placedPiecesHolder;
-        [Space]
-        [SerializeField]
-        private Vector2 _spawnerRangePosition;
-
-        private List<PieceController> _piecesPool;
-        private List<PieceController> _placedPieces;
-        private PieceController _currentPiece;
-        private Vector3 _currentSpawnPosition;
-        private PlayerController _playerController;
-
-        public PieceController CurrentPiece
-        {
-            get => _currentPiece;
-            private set => _currentPiece = value;
-        }
-        public int PiecesLost { get; set; }
-        
-        public bool CanSpawn { get; set; }
-
-        private Action<PieceController> _onPiecePlaced;
-        private Action<PieceController> _onPieceLost;
-
         public void Init(Action<PieceController> onPiecePlaced, Action<PieceController> onPieceLost)
         {
             _onPiecePlaced = onPiecePlaced;
@@ -81,27 +52,28 @@ namespace MiniclipTrick.Game.Player
         {
             CanSpawn = false;
 
-            if (!_currentPiece.IsPlaced)
+            if (_currentPiece != null && !_currentPiece.IsPlaced)
             {
                 _currentPiece.DestroyPiece();
+                _currentPiece = null;
             }
+        }
+
+        public void SetPiecePlacedParent(PieceController piece)
+        {
+            piece.transform.SetParent(_placedPiecesHolder);
         }
 
         private void InstantiateNewPiece(PieceController piecePrefab)
         {
-            PieceController newPiece = Instantiate(piecePrefab, _pieceSpawnPoint);
-            newPiece.Initialize(_onPiecePlaced, _onPieceLost, null);
+            PieceController newPiece = Instantiate(piecePrefab, _pieceSpawnPoint, false);
+            newPiece.Initialize(_onPiecePlaced, _onPieceLost);
             newPiece.gameObject.SetActive(false);
             _piecesPool.Add(newPiece);
         }
         
         private PieceController GetPieceToSpawn()
         {
-            if (_currentPiece != null)
-            {
-                _currentPiece.transform.SetParent(_placedPiecesHolder);
-            }
-            
             PieceController newPiece = _piecesPool.PopRandomItem();
 
             if (_piecesPool.Count <= 1)
@@ -111,5 +83,35 @@ namespace MiniclipTrick.Game.Player
             
             return newPiece;
         }
+        
+        [SerializeField]
+        private PiecesContainerScriptable _piecesContainer;
+        [Space]
+        [SerializeField]
+        private Transform _pieceSpawnPoint;
+        [SerializeField]
+        private Transform _placedPiecesHolder;
+        [Space]
+        [SerializeField]
+        private Vector2 _spawnerRangePosition;
+
+        private List<PieceController> _piecesPool;
+        private List<PieceController> _placedPieces;
+        private PieceController _currentPiece;
+        private Vector3 _currentSpawnPosition;
+        private PlayerController _playerController;
+
+        public PieceController CurrentPiece
+        {
+            get => _currentPiece;
+            private set => _currentPiece = value;
+        }
+        
+        public int PiecesLost { get; set; }
+        
+        public bool CanSpawn { get; set; }
+
+        private Action<PieceController> _onPiecePlaced;
+        private Action<PieceController> _onPieceLost;
     }
 }

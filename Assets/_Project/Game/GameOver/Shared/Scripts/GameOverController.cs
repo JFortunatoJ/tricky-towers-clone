@@ -1,5 +1,8 @@
+using Blazewing;
+using MiniclipTrick.Load;
 using MiniclipTrick.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MiniclipTrick.GameOver
 {
@@ -34,12 +37,13 @@ namespace MiniclipTrick.GameOver
 
         protected virtual void PlayAgain()
         {
-            SceneController.LoadScene("");
+            string sceneName = DataController.Exist<GameMode>() ? DataController.Get<GameMode>().sceneName : "StartMenu";
+            LoadSceneController.LoadScene(sceneName);
         }
 
         protected virtual void ReturnToMainMenu()
         {
-            SceneController.LoadScene("StartMenu");
+            SceneController.LoadScene("StartMenu", LoadSceneMode.Single);
         }
     }
 }
