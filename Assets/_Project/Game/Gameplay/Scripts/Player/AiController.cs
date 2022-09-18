@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using MiniclipTrick.Game.Piece;
+using MiniclipTest.Game.Piece;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace MiniclipTrick.Game.Player
+namespace MiniclipTest.Game.Player
 {
     public class AiController : PlayerController
     {
@@ -71,7 +71,7 @@ namespace MiniclipTrick.Game.Player
                 yield return _waitOneSecond;
                 pieceMovement.Rotate();
                 rotationDist = Math.Abs(targetRotation.z - pieceMovement.LocalEulerAngles.z);
-                print("Dist: " + rotationDist);
+                //print("Dist: " + rotationDist);
             }
 
             _isPlaying = false;

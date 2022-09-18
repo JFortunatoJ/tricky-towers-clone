@@ -24,9 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Move",
+                    "name": "TouchUp",
+                    "type": "Button",
+                    "id": "b8a39038-bd8f-4fbb-bb98-e9785496a4f5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HorizontalMove",
                     "type": "PassThrough",
                     "id": "00703d40-f51b-4714-a630-fa9e398cea07",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "VerticalMove",
+                    "type": "PassThrough",
+                    "id": "f7795d31-f25e-431c-818f-2582f2e33cfb",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -38,7 +56,7 @@
                     "name": "",
                     "id": "f55392c1-b1ec-43ac-af9c-08298f740cd3",
                     "path": "<Keyboard>/space",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Rotate",
@@ -74,7 +92,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Touch",
-                    "action": "Move",
+                    "action": "HorizontalMove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -85,7 +103,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "HorizontalMove",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -96,7 +114,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "HorizontalMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -107,7 +125,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "HorizontalMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -118,7 +136,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "HorizontalMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -129,9 +147,86 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "HorizontalMove",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "40bbecf2-4654-4357-af84-976d10fc87d2",
+                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "VerticalMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "a1c79177-a46d-4a37-88b6-9dcfa1ff96bb",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VerticalMove",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "ffa4eb9c-b2d2-42a9-a3d7-cda7888e1b93",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "VerticalMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "292b9165-2ee9-4939-b61c-800d0a3fc554",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "VerticalMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "a5c13131-0ca8-466c-a5d5-19adfe9a1e53",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "VerticalMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "247efd58-00c2-4810-8517-80a33935b23c",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "VerticalMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "fe963b1c-b417-461a-b8b8-7e1aa7c5b80f",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "TouchUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

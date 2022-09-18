@@ -1,36 +1,18 @@
 using Blazewing;
-using MiniclipTrick.Load;
-using MiniclipTrick.Utility;
+using MiniclipTest.Load;
+using MiniclipTest.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MiniclipTrick.GameOver
+namespace MiniclipTest.GameOver
 {
-    public class GameOverController : MonoBehaviour
+    public class GameOverController : BaseController
     {
         [SerializeField]
         protected GameOverView _view;
 
-        public static void Show(string sceneName)
-        {
-            if (!string.IsNullOrEmpty(sceneName))
-            {
-                SceneController.LoadScene(sceneName, useFade: false);
-            }
-        }
-
-        public static void Hide(string sceneName)
-        {
-            if (!string.IsNullOrEmpty(sceneName))
-            {
-                SceneController.UnloadScene(sceneName);
-            }
-        }
-
         protected virtual void Start()
         {
-            Time.timeScale = 0;
-            
             _view.OnPlayAgainButtonClick += PlayAgain;
             _view.OnMainMenuButtonClick += ReturnToMainMenu;
 

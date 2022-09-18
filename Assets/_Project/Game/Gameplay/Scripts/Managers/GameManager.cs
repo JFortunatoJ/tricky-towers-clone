@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using Blazewing;
-using MiniclipTrick.Game.Events;
-using MiniclipTrick.Game.Player;
-using MiniclipTrick.GameOver;
+using MiniclipTest.Game.Events;
+using MiniclipTest.Game.Player;
+using MiniclipTest.GameOver;
+using MiniclipTest.Utility;
 using UnityEngine;
 
-namespace MiniclipTrick.Game
+namespace MiniclipTest.Game
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : StaticInstance<GameManager>
     {
         protected virtual void OnEnable()
         {
@@ -19,7 +20,7 @@ namespace MiniclipTrick.Game
             DataEvent.Unregister<OnPlayerGameOverEvent>(OnPlayerGameOver);
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             InstantiatePlayers();
         }
@@ -41,10 +42,9 @@ namespace MiniclipTrick.Game
 
         protected virtual void OnPlayerGameOver(OnPlayerGameOverEvent eventData)
         {
-            GameOverController.Show(eventData.isVictory
+            BaseController.Show(eventData.isVictory
                 ? VictoryScreenController.SCENE_NAME
                 : DefeatScreenController.SCENE_NAME);
-            print($"Jogador: {eventData.playerId} deu game over. Vitória: {eventData.isVictory}");
 
             for (int i = 0; i < _playersList.Count; i++)
             {
@@ -61,5 +61,7 @@ namespace MiniclipTrick.Game
         protected Transform _playersHolder;
 
         protected List<PlayerController> _playersList;
+        
+        public bool IsAgainstCPU { get; protected set; }
     }
 }

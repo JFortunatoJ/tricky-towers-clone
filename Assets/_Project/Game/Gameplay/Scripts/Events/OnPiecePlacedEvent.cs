@@ -1,6 +1,6 @@
-using MiniclipTrick.Game.Piece;
+using MiniclipTest.Game.Piece;
 
-namespace MiniclipTrick.Game.Events
+namespace MiniclipTest.Game.Events
 {
     public struct OnPiecePlacedEvent
     {

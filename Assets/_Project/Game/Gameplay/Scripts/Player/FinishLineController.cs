@@ -3,19 +3,15 @@ using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using Zenject;
 
-namespace MiniclipTrick.Game
+namespace MiniclipTest.Game
 {
-    public class EndLineController : MonoBehaviour
+    public class FinishLineController : MonoBehaviour
     {
-        [Inject]
-        public void Construct(LevelSettings settings)
+        private void Start()
         {
-            _settings = settings;
+            transform.localPosition = new Vector3(0, GameSettings.Instance.FinishLineHeight, 0);
             
-            transform.localPosition = new Vector3(0, _settings.endLineHeight, 0);
-            pieceDetectorRay.Init();
             pieceDetectorRay.raySource.y = transform.localPosition.y;
             pieceDetectorRay.onStatusChanged += OnStatusChanged;
             
@@ -34,6 +30,8 @@ namespace MiniclipTrick.Game
         {
             if (status)
             {
+                if (_countdownCoroutine != null) return;
+                
                 CanDetect = true;
                 OnCountdownStarted?.Invoke();
                 _countdownCoroutine = StartCoroutine(CountdownCoroutine());
@@ -41,14 +39,13 @@ namespace MiniclipTrick.Game
             else
             {
                 CanDetect = false;
-                if (_countdownCoroutine != null)
-                {
-                    _countdownText.DOFade(0, .15f);
-                    StopCoroutine(_countdownCoroutine);
-                    _countdownCoroutine = null;
+                if (_countdownCoroutine == null) return;
+                
+                _countdownText.DOFade(0, .15f).SetUpdate(true);
+                StopCoroutine(_countdownCoroutine);
+                _countdownCoroutine = null;
                     
-                    OnCountdownCanceled?.Invoke();
-                }
+                OnCountdownCanceled?.Invoke();
             }
         }
 
@@ -86,7 +83,6 @@ namespace MiniclipTrick.Game
         private readonly int _countdownSeconds = 3;
         private WaitForSeconds _waitOneSecond;
         private Coroutine _countdownCoroutine;
-        private LevelSettings _settings;
         
         public bool CanDetect { get; set; }
 

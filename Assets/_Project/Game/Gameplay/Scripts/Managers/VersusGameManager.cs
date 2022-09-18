@@ -1,11 +1,17 @@
-using MiniclipTrick.Game.Events;
-using MiniclipTrick.Game.Player;
-using MiniclipTrick.GameOver;
+using MiniclipTest.Game.Events;
+using MiniclipTest.Game.Player;
+using MiniclipTest.GameOver;
 
-namespace MiniclipTrick.Game
+namespace MiniclipTest.Game
 {
     public class VersusGameManager : GameManager
     {
+        protected override void SetupInstance()
+        {
+            IsAgainstCPU = true;
+            base.SetupInstance();
+        }
+
         protected override void InstantiatePlayers()
         {
             PlayerFactory.CreateNewHumanPlayer("Player", _playersHolder, 0, controller =>

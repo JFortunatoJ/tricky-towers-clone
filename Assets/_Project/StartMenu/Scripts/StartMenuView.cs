@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MiniclipTrick.StartMenu
+namespace MiniclipTest.StartMenu
 {
     public class StartMenuView : MonoBehaviour
     {

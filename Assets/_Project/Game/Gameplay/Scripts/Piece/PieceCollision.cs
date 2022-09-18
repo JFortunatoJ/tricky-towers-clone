@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace MiniclipTrick.Game.Piece
+namespace MiniclipTest.Game.Piece
 {
     public class PieceCollision : MonoBehaviour
     {

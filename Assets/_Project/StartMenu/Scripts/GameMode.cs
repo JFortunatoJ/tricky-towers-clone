@@ -1,4 +1,4 @@
-namespace MiniclipTrick
+namespace MiniclipTest
 {
     public struct GameMode
     {

@@ -46,9 +46,27 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""TouchUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8a39038-bd8f-4fbb-bb98-e9785496a4f5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HorizontalMove"",
                     ""type"": ""PassThrough"",
                     ""id"": ""00703d40-f51b-4714-a630-fa9e398cea07"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""VerticalMove"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f7795d31-f25e-431c-818f-2582f2e33cfb"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -60,7 +78,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""f55392c1-b1ec-43ac-af9c-08298f740cd3"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Rotate"",
@@ -96,7 +114,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Touch"",
-                    ""action"": ""Move"",
+                    ""action"": ""HorizontalMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -107,7 +125,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""HorizontalMove"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -118,7 +136,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
+                    ""action"": ""HorizontalMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -129,7 +147,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
+                    ""action"": ""HorizontalMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -140,7 +158,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
+                    ""action"": ""HorizontalMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -151,9 +169,86 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Move"",
+                    ""action"": ""HorizontalMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40bbecf2-4654-4357-af84-976d10fc87d2"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touch"",
+                    ""action"": ""VerticalMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""a1c79177-a46d-4a37-88b6-9dcfa1ff96bb"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""ffa4eb9c-b2d2-42a9-a3d7-cda7888e1b93"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""VerticalMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""292b9165-2ee9-4939-b61c-800d0a3fc554"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""VerticalMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""a5c13131-0ca8-466c-a5d5-19adfe9a1e53"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""VerticalMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""247efd58-00c2-4810-8517-80a33935b23c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""VerticalMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe963b1c-b417-461a-b8b8-7e1aa7c5b80f"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Touch"",
+                    ""action"": ""TouchUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -175,7 +270,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_PiecesActions = asset.FindActionMap("PiecesActions", throwIfNotFound: true);
         m_PiecesActions_Rotate = m_PiecesActions.FindAction("Rotate", throwIfNotFound: true);
         m_PiecesActions_TouchDown = m_PiecesActions.FindAction("TouchDown", throwIfNotFound: true);
-        m_PiecesActions_Move = m_PiecesActions.FindAction("Move", throwIfNotFound: true);
+        m_PiecesActions_TouchUp = m_PiecesActions.FindAction("TouchUp", throwIfNotFound: true);
+        m_PiecesActions_HorizontalMove = m_PiecesActions.FindAction("HorizontalMove", throwIfNotFound: true);
+        m_PiecesActions_VerticalMove = m_PiecesActions.FindAction("VerticalMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -237,14 +334,18 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private IPiecesActionsActions m_PiecesActionsActionsCallbackInterface;
     private readonly InputAction m_PiecesActions_Rotate;
     private readonly InputAction m_PiecesActions_TouchDown;
-    private readonly InputAction m_PiecesActions_Move;
+    private readonly InputAction m_PiecesActions_TouchUp;
+    private readonly InputAction m_PiecesActions_HorizontalMove;
+    private readonly InputAction m_PiecesActions_VerticalMove;
     public struct PiecesActionsActions
     {
         private @PlayerInputActions m_Wrapper;
         public PiecesActionsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Rotate => m_Wrapper.m_PiecesActions_Rotate;
         public InputAction @TouchDown => m_Wrapper.m_PiecesActions_TouchDown;
-        public InputAction @Move => m_Wrapper.m_PiecesActions_Move;
+        public InputAction @TouchUp => m_Wrapper.m_PiecesActions_TouchUp;
+        public InputAction @HorizontalMove => m_Wrapper.m_PiecesActions_HorizontalMove;
+        public InputAction @VerticalMove => m_Wrapper.m_PiecesActions_VerticalMove;
         public InputActionMap Get() { return m_Wrapper.m_PiecesActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -260,9 +361,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @TouchDown.started -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnTouchDown;
                 @TouchDown.performed -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnTouchDown;
                 @TouchDown.canceled -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnTouchDown;
-                @Move.started -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnMove;
+                @TouchUp.started -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnTouchUp;
+                @TouchUp.performed -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnTouchUp;
+                @TouchUp.canceled -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnTouchUp;
+                @HorizontalMove.started -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnHorizontalMove;
+                @HorizontalMove.performed -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnHorizontalMove;
+                @HorizontalMove.canceled -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnHorizontalMove;
+                @VerticalMove.started -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnVerticalMove;
+                @VerticalMove.performed -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnVerticalMove;
+                @VerticalMove.canceled -= m_Wrapper.m_PiecesActionsActionsCallbackInterface.OnVerticalMove;
             }
             m_Wrapper.m_PiecesActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -273,9 +380,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @TouchDown.started += instance.OnTouchDown;
                 @TouchDown.performed += instance.OnTouchDown;
                 @TouchDown.canceled += instance.OnTouchDown;
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
+                @TouchUp.started += instance.OnTouchUp;
+                @TouchUp.performed += instance.OnTouchUp;
+                @TouchUp.canceled += instance.OnTouchUp;
+                @HorizontalMove.started += instance.OnHorizontalMove;
+                @HorizontalMove.performed += instance.OnHorizontalMove;
+                @HorizontalMove.canceled += instance.OnHorizontalMove;
+                @VerticalMove.started += instance.OnVerticalMove;
+                @VerticalMove.performed += instance.OnVerticalMove;
+                @VerticalMove.canceled += instance.OnVerticalMove;
             }
         }
     }
@@ -302,6 +415,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         void OnRotate(InputAction.CallbackContext context);
         void OnTouchDown(InputAction.CallbackContext context);
-        void OnMove(InputAction.CallbackContext context);
+        void OnTouchUp(InputAction.CallbackContext context);
+        void OnHorizontalMove(InputAction.CallbackContext context);
+        void OnVerticalMove(InputAction.CallbackContext context);
     }
 }

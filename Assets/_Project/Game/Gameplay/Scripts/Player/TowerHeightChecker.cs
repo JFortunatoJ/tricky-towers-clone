@@ -1,24 +1,17 @@
+using Blazewing;
+using MiniclipTest.Game.Events;
 using UnityEngine;
 
 public class TowerHeightChecker : MonoBehaviour
 {
-    [SerializeField]
-    private float _minRayHeight;
-    [SerializeField]
-    private float _maxRayHeight;
-    [Space]
-    [SerializeField] private float _rayRaiseAmount = 5;
-    
-    public PieceDetectorRay _rayA;
-    public PieceDetectorRay _rayB;
-
-    private void Start()
+    public void Init(string towerOwnerId)
     {
-        _rayA.Init();
-        _rayB.Init();
-        
+        _towerOwnerId = towerOwnerId;
+
         _rayA.onStatusChanged += OnRayAStatusChanged;
         _rayB.onStatusChanged += OnRayBStatusChanged;
+        
+        _focusPositionY = _rayA.raySource.y;
     }
 
     private void FixedUpdate()
@@ -30,9 +23,16 @@ public class TowerHeightChecker : MonoBehaviour
     private void OnRayAStatusChanged(bool status)
     {
         if (!status) return;
+
+        do
+        {
+            _focusPositionY = _rayB.raySource.y = _rayA.raySource.y;
+            _rayA.raySource.y = Mathf.Clamp(_rayA.raySource.y + _rayRaiseAmount, _minRayHeight,
+                MiniclipTest.Game.GameSettings.Instance.FinishLineHeight + _rayRaiseAmount * 2f);
+
+        } while (_rayA.CheckPiece());
         
-        _rayB.raySource.y = _rayA.raySource.y;
-        _rayA.raySource.y = Mathf.Clamp(_rayA.raySource.y + _rayRaiseAmount, _minRayHeight, _maxRayHeight);
+        DataEvent.Notify(new OnTowerHeightChanged(_towerOwnerId, _focusPositionY));
     }
     
     private void OnRayBStatusChanged(bool status)
@@ -40,7 +40,9 @@ public class TowerHeightChecker : MonoBehaviour
         if (status) return;
         
         _rayA.raySource.y = _rayB.raySource.y;
-        _rayB.raySource.y = Mathf.Clamp(_rayB.raySource.y - _rayRaiseAmount, _minRayHeight, _maxRayHeight);
+        _focusPositionY = _rayB.raySource.y = Mathf.Clamp(_rayB.raySource.y - _rayRaiseAmount, _minRayHeight, MiniclipTest.Game.GameSettings.Instance.FinishLineHeight);
+        
+        DataEvent.Notify(new OnTowerHeightChanged(_towerOwnerId, _focusPositionY));
     }
 
 #if UNITY_EDITOR
@@ -52,4 +54,15 @@ public class TowerHeightChecker : MonoBehaviour
         Gizmos.DrawRay(_rayB.raySource, Vector3.right * _rayB.rayDistance);
     }
 #endif
+    
+    [SerializeField]
+    private float _minRayHeight;
+    [Space]
+    [SerializeField] private float _rayRaiseAmount = 5;
+
+    private float _focusPositionY;
+    private string _towerOwnerId;
+    
+    public PieceDetectorRay _rayA;
+    public PieceDetectorRay _rayB;
 }

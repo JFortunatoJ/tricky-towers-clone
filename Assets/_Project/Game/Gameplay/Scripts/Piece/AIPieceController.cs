@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace MiniclipTrick.Game.Piece
+namespace MiniclipTest.Game.Piece
 {
     public class AIPieceController : PieceController
     {

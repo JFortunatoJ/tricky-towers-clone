@@ -1,6 +1,7 @@
 using System;
+using DG.Tweening;
 
-namespace MiniclipTrick.Game.Piece
+namespace MiniclipTest.Game.Piece
 {
     public class PieceController : TowerStructure
     {
@@ -17,6 +18,12 @@ namespace MiniclipTrick.Game.Piece
 
             IsPlaced = false;
             IsLost = false;
+        }
+
+        public void Show()
+        {
+            Movement.CanMove = false;
+            transform.DOScale(1, .35f).SetEase(Ease.OutBack).onComplete = () => Movement.CanMove = true;
         }
 
         public void OnCollideWithOtherPiece()

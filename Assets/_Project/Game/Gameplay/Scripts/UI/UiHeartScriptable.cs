@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MiniclipTrick.Game.Scriptables
+namespace MiniclipTest.Game.Scriptables
 {
     [CreateAssetMenu(menuName = "Scriptables/Game/UI Hearts")]
     public class UiHeartScriptable : ScriptableObject

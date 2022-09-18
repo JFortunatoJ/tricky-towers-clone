@@ -1,31 +1,18 @@
 using Blazewing;
-using MiniclipTrick.Game.Events;
-using MiniclipTrick.Load;
-using MiniclipTrick.Utility;
+using MiniclipTest.Game.Events;
+using MiniclipTest.Load;
+using MiniclipTest.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MiniclipTrick.Game.Pause
+namespace MiniclipTest.Game.Pause
 {
     [RequireComponent(typeof(PauseView))]
-    public class PauseController : MonoBehaviour
+    public class PauseController : BaseController
     {
         private PauseView _view;
 
-        private static readonly string SCENE_NAME = "PauseScreen";
-
-        public static void Show()
-        {
-            Time.timeScale = 0;
-            SceneController.LoadScene(SCENE_NAME, useFade: false);
-        }
-
-        public static void Hide()
-        {
-            Time.timeScale = 1;
-            SceneController.UnloadScene(SCENE_NAME);
-            DataEvent.Notify(new OnPauseEvent(false));
-        }
+        public static readonly string SCENE_NAME = "PauseScreen";
 
         private void Awake()
         {
@@ -41,7 +28,9 @@ namespace MiniclipTrick.Game.Pause
 
         private void OnContinue()
         {
-            Hide();
+            Hide(SCENE_NAME);
+            
+            DataEvent.Notify(new OnPauseEvent(false));
         }
 
         private void OnRestart()

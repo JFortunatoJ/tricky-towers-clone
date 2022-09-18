@@ -1,20 +1,33 @@
 using System;
 using System.Collections.Generic;
-using MiniclipTrick.Game.Piece;
-using MiniclipTrick.Game.Scriptables;
-using MiniclipTrick.Utility;
+using Blazewing;
+using DG.Tweening;
+using MiniclipTest.Game.Events;
+using MiniclipTest.Game.Piece;
+using MiniclipTest.Game.Scriptables;
+using MiniclipTest.Utility;
 using UnityEngine;
 
-namespace MiniclipTrick.Game.Player
+namespace MiniclipTest.Game.Player
 {
     public class PiecesManager : MonoBehaviour
     {
-        public void Init(Action<PieceController> onPiecePlaced, Action<PieceController> onPieceLost)
+        private void OnEnable()
         {
+            DataEvent.Register<OnTowerHeightChanged>(OnTowerHeightChanged);
+        }
+
+        private void OnDisable()
+        {
+            DataEvent.Unregister<OnTowerHeightChanged>(OnTowerHeightChanged);
+        }
+
+        public void Init(string playerId, Action<PieceController> onPiecePlaced, Action<PieceController> onPieceLost)
+        {
+            _playerId = playerId;
+            
             _onPiecePlaced = onPiecePlaced;
             _onPieceLost = onPieceLost;
-            
-            _currentSpawnPosition = _pieceSpawnPoint.localPosition;
 
             CanSpawn = true;
             
@@ -23,7 +36,7 @@ namespace MiniclipTrick.Game.Player
 
         private void FixedUpdate()
         {
-            if(_currentPiece == null || _currentPiece.IsPlaced || _currentPiece.IsLost) return;
+            if(_currentPiece is null || _currentPiece.IsPlaced || _currentPiece.IsLost) return;
 
             _currentPiece.Movement.MoveDownwards();
         }
@@ -46,13 +59,14 @@ namespace MiniclipTrick.Game.Player
             
             CurrentPiece = GetPieceToSpawn();
             CurrentPiece.gameObject.SetActive(true);
+            CurrentPiece.Show();
         }
         
         public void StopSpawn()
         {
             CanSpawn = false;
 
-            if (_currentPiece != null && !_currentPiece.IsPlaced)
+            if (_currentPiece is not null && !_currentPiece.IsPlaced)
             {
                 _currentPiece.DestroyPiece();
                 _currentPiece = null;
@@ -66,10 +80,17 @@ namespace MiniclipTrick.Game.Player
 
         private void InstantiateNewPiece(PieceController piecePrefab)
         {
-            PieceController newPiece = Instantiate(piecePrefab, _pieceSpawnPoint, false);
+            PieceController newPiece = Instantiate(piecePrefab, _pieceSpawnPoint.position, Quaternion.identity, _piecesHolder);
             newPiece.Initialize(_onPiecePlaced, _onPieceLost);
             newPiece.gameObject.SetActive(false);
             _piecesPool.Add(newPiece);
+        }
+        
+        private void OnTowerHeightChanged(OnTowerHeightChanged eventData)
+        {
+            if(eventData.towerOwnerId != _playerId) return;
+            
+            _pieceSpawnPoint.DOMoveY(eventData.towerHeight + _spawnOffset, 0f);
         }
         
         private PieceController GetPieceToSpawn()
@@ -90,16 +111,19 @@ namespace MiniclipTrick.Game.Player
         [SerializeField]
         private Transform _pieceSpawnPoint;
         [SerializeField]
-        private Transform _placedPiecesHolder;
-        [Space]
+        private Transform _piecesHolder;
         [SerializeField]
-        private Vector2 _spawnerRangePosition;
+        private Transform _placedPiecesHolder;
 
+        private string _playerId;
         private List<PieceController> _piecesPool;
         private List<PieceController> _placedPieces;
         private PieceController _currentPiece;
-        private Vector3 _currentSpawnPosition;
         private PlayerController _playerController;
+        private Action<PieceController> _onPiecePlaced;
+        private Action<PieceController> _onPieceLost;
+        
+        private readonly float _spawnOffset = 25.2f;
 
         public PieceController CurrentPiece
         {
@@ -110,8 +134,5 @@ namespace MiniclipTrick.Game.Player
         public int PiecesLost { get; set; }
         
         public bool CanSpawn { get; set; }
-
-        private Action<PieceController> _onPiecePlaced;
-        private Action<PieceController> _onPieceLost;
     }
 }

@@ -1,8 +1,8 @@
-using MiniclipTrick.Utility;
+using MiniclipTest.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MiniclipTrick.Load
+namespace MiniclipTest.Load
 {
     public class LoadSceneController : MonoBehaviour
     {

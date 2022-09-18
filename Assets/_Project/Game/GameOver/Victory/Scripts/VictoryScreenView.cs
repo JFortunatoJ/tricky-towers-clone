@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MiniclipTrick.GameOver
+namespace MiniclipTest.GameOver
 {
     public class VictoryScreenView : GameOverView
     {

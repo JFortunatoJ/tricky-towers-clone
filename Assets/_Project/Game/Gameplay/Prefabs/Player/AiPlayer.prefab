@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3783557350764581768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2322495828175985410}
+  m_Layer: 0
+  m_Name: PiecesHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2322495828175985410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3783557350764581768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3793470819512682247}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3793470819143469044
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3793470819143469045}
   m_Layer: 0
-  m_Name: PieceSpawn
+  m_Name: PieceSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,13 +199,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3793470819342651050}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -12.5, z: 0}
+  m_LocalPosition: {x: 0, y: -13.5, z: 0}
   m_LocalScale: {x: 6.9, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3793470819238441399}
   m_Father: {fileID: 3793470820563591230}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3793470819342651055
 MonoBehaviour:
@@ -238,7 +269,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3793470820563591230}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3793470819512682246
 GameObject:
@@ -270,6 +301,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3793470819143469045}
+  - {fileID: 2322495828175985410}
   m_Father: {fileID: 3793470819813548196}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -287,63 +319,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _piecesContainer: {fileID: 11400000, guid: 47bda167a9fa00f48a675793ab92ff3c, type: 2}
   _pieceSpawnPoint: {fileID: 3793470819143469045}
+  _piecesHolder: {fileID: 2322495828175985410}
   _placedPiecesHolder: {fileID: 3793470819486982406}
-  _spawnerRangePosition: {x: -1, y: 1}
---- !u!1 &3793470819649319830
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3793470819649319831}
-  - component: {fileID: 3793470819649319832}
-  m_Layer: 0
-  m_Name: TowerHeightController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3793470819649319831
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3793470819649319830}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3793470820563591230}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3793470819649319832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3793470819649319830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd81a08d3bfc334490415bea3b5cdd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _minRayHeight: -5
-  _maxRayHeight: 15
-  _rayRaiseAmount: 5
-  _rayA:
-    raySource: {x: -12, y: 0}
-    rayDistance: 24
-    rayHasPiece: 0
-  _rayB:
-    raySource: {x: -12, y: -5}
-    rayDistance: 24
-    rayHasPiece: 0
 --- !u!1 &3793470819813548195
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +331,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3793470819813548196}
   - component: {fileID: 3793470819813548197}
-  - component: {fileID: 6606972500053847543}
   m_Layer: 0
   m_Name: AiPlayer
   m_TagString: Untagged
@@ -379,6 +355,7 @@ Transform:
   - {fileID: 3793470820340547518}
   - {fileID: 1144479643350991400}
   - {fileID: 5602705742149120480}
+  - {fileID: 768873901635203131}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -396,20 +373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: opponent
   _piecesManager: {fileID: 3793470819512682248}
-  _endLine: {fileID: 3793470820340547519}
---- !u!114 &6606972500053847543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3793470819813548195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _containerSource: 2
+  _finishLineLine: {fileID: 3793470820340547519}
+  _towerHeightChecker: {fileID: 710774148596514537}
 --- !u!1 &3793470819935744133
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,8 +484,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 1
   m_colorMode: 2
   m_fontColorGradient:
@@ -745,12 +710,65 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3793470819649319831}
   - {fileID: 3793470819342651051}
   - {fileID: 3793470819486982406}
   m_Father: {fileID: 3793470819813548196}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4725406359239378020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 768873901635203131}
+  - component: {fileID: 710774148596514537}
+  m_Layer: 0
+  m_Name: TowerHeightController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &768873901635203131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4725406359239378020}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3793470819813548196}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &710774148596514537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4725406359239378020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd81a08d3bfc334490415bea3b5cdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minRayHeight: -12.5
+  _rayRaiseAmount: 4
+  _rayA:
+    raySource: {x: 48, y: -8.5}
+    rayDistance: 24
+    rayHasPiece: 0
+  _rayB:
+    raySource: {x: 48, y: -12.5}
+    rayDistance: 24
+    rayHasPiece: 0
 --- !u!1001 &740746567293117789
 PrefabInstance:
   m_ObjectHideFlags: 0

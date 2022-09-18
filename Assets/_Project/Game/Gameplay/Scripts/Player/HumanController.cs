@@ -1,9 +1,9 @@
 using Blazewing;
-using MiniclipTrick.Game.Events;
-using MiniclipTrick.Game.Piece;
+using MiniclipTest.Game.Events;
+using MiniclipTest.Game.Piece;
 using UnityEngine;
 
-namespace MiniclipTrick.Game.Player
+namespace MiniclipTest.Game.Player
 {
     [RequireComponent(typeof(PlayerInputController))]
     public class HumanController : PlayerController
@@ -15,8 +15,9 @@ namespace MiniclipTrick.Game.Player
             _input.Init();
             _input.onRotateInput += OnRotateInput;
             _input.onMoveHorizontallyInput += OnMovePieceHorizontally;
+            _input.onSpeedUpPiece += OnSpeedUpPiece;
         }
-        
+
         private void OnRotateInput()
         {
             if(!CanPlay()) return;
@@ -29,6 +30,20 @@ namespace MiniclipTrick.Game.Player
             if(!CanPlay()) return;
             
             _piecesManager.CurrentPiece.Movement.HorizontalStep((int)direction);
+        }
+        
+        private void OnSpeedUpPiece(bool status)
+        {
+            if(!CanPlay()) return;
+
+            if (status)
+            {
+                _piecesManager.CurrentPiece.Movement.BoostSpeed();
+            }
+            else
+            {
+                _piecesManager.CurrentPiece.Movement.ResetSpeed();
+            }
         }
 
         protected override void OnPiecePlaced(PieceController piece)

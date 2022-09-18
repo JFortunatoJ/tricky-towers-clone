@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MiniclipTrick.GameOver
+namespace MiniclipTest.GameOver
 {
     public class GameOverView : MonoBehaviour
     {

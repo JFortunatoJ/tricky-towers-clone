@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace MiniclipTrick.Utility
+namespace MiniclipTest.Utility
 {
-    public class FadeController : SingletonBehaviour<FadeController>
+    public class FadeController : PersistentSingleton<FadeController>
     {
         private CanvasGroup _canvasGroup;
 

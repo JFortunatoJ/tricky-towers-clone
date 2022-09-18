@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MiniclipTrick.Game.Pause
+namespace MiniclipTest.Game.Pause
 {
     public class PauseView : MonoBehaviour
     {

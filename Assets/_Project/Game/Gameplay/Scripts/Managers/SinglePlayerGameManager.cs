@@ -1,9 +1,15 @@
-using MiniclipTrick.Game.Player;
+using MiniclipTest.Game.Player;
 
-namespace MiniclipTrick.Game
+namespace MiniclipTest.Game
 {
     public class SinglePlayerGameManager : GameManager
     {
+        protected override void SetupInstance()
+        {
+            IsAgainstCPU = false;
+            base.SetupInstance();
+        }
+
         protected override void InstantiatePlayers()
         {
             PlayerFactory.CreateNewHumanPlayer("Player", _playersHolder, 0, OnPlayerInstantiated);

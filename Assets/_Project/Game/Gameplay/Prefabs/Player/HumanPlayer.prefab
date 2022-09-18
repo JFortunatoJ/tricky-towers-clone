@@ -1,5 +1,90 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2905401441454883973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8589614639228327640}
+  - component: {fileID: 621651016208930419}
+  m_Layer: 0
+  m_Name: TowerHeightController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8589614639228327640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905401441454883973}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6221895210124961284}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &621651016208930419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905401441454883973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd81a08d3bfc334490415bea3b5cdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minRayHeight: -12.5
+  _rayRaiseAmount: 2.5
+  _rayA:
+    raySource: {x: -12, y: -10}
+    rayDistance: 24
+    rayHasPiece: 0
+  _rayB:
+    raySource: {x: -12, y: -12.5}
+    rayDistance: 24
+    rayHasPiece: 0
+--- !u!1 &4159028838047791733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 874259139205967608}
+  m_Layer: 0
+  m_Name: PiecesHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &874259139205967608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4159028838047791733}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6221895211029954983}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6221895210124961283
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +96,6 @@ GameObject:
   - component: {fileID: 6221895210124961284}
   - component: {fileID: 8488399897791440410}
   - component: {fileID: 8065051747352605894}
-  - component: {fileID: -7757410220933788200}
   m_Layer: 0
   m_Name: HumanPlayer
   m_TagString: Untagged
@@ -36,6 +120,7 @@ Transform:
   - {fileID: 6221895211745622302}
   - {fileID: 8585151290861802453}
   - {fileID: 6972539404121994738}
+  - {fileID: 8589614639228327640}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53,7 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: player_1
   _piecesManager: {fileID: 6221895211029954984}
-  _endLine: {fileID: 6221895211745622303}
+  _finishLineLine: {fileID: 6221895211745622303}
+  _towerHeightChecker: {fileID: 621651016208930419}
 --- !u!114 &8065051747352605894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,20 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1ab33210f000b4991146adfa1ebcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dragDeadZone: 12
---- !u!114 &-7757410220933788200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6221895210124961283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _containerSource: 2
+  _minHorizontalMovDist: 10
+  _minVerticalMovDist: -10
 --- !u!1 &6221895210539709989
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,8 +263,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 1
   m_colorMode: 2
   m_fontColorGradient:
@@ -278,13 +352,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6221895210595682314}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -12.5, z: 0}
+  m_LocalPosition: {x: 0, y: -13.5, z: 0}
   m_LocalScale: {x: 6.9, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6221895210767251223}
   m_Father: {fileID: 6221895212058846878}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6221895210595682319
 MonoBehaviour:
@@ -440,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6221895210794959189}
   m_Layer: 0
-  m_Name: PieceSpawn
+  m_Name: PieceSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -461,61 +535,6 @@ Transform:
   m_Father: {fileID: 6221895211029954983}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6221895210892916022
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6221895210892916023}
-  - component: {fileID: 6221895210892916024}
-  m_Layer: 0
-  m_Name: TowerHeightController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6221895210892916023
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6221895210892916022}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6221895212058846878}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6221895210892916024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6221895210892916022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd81a08d3bfc334490415bea3b5cdd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _minRayHeight: -5
-  _maxRayHeight: 15
-  _rayRaiseAmount: 5
-  _rayA:
-    raySource: {x: -12, y: 0}
-    rayDistance: 24
-    rayHasPiece: 0
-  _rayB:
-    raySource: {x: -12, y: -5}
-    rayDistance: 24
-    rayHasPiece: 0
 --- !u!1 &6221895210988529573
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +564,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6221895212058846878}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6221895211029954982
 GameObject:
@@ -577,6 +596,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6221895210794959189}
+  - {fileID: 874259139205967608}
   m_Father: {fileID: 6221895210124961284}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -594,8 +614,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _piecesContainer: {fileID: 11400000, guid: 9fcf1daa4d3c6df4c8cb664d3ed8711e, type: 2}
   _pieceSpawnPoint: {fileID: 6221895210794959189}
+  _piecesHolder: {fileID: 874259139205967608}
   _placedPiecesHolder: {fileID: 6221895210988529574}
-  _spawnerRangePosition: {x: -1, y: 1}
 --- !u!1 &6221895211745622301
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +627,7 @@ GameObject:
   - component: {fileID: 6221895211745622302}
   - component: {fileID: 6221895211745622303}
   m_Layer: 9
-  m_Name: EndLine
+  m_Name: FinishLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -717,9 +737,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1438470043
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: -232175885
+  m_SortingLayer: 2
+  m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0.23113209, b: 0.23113209, a: 1}
   m_FlipX: 0
@@ -759,7 +779,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6221895210892916023}
   - {fileID: 6221895210595682315}
   - {fileID: 6221895210988529574}
   m_Father: {fileID: 6221895210124961284}

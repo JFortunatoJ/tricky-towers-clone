@@ -3,20 +3,19 @@ using UnityEngine.SceneManagement;
 
 public abstract class BaseController : MonoBehaviour
 {
-    public static bool Show(string sceneName, LoadSceneMode mode = LoadSceneMode.Single, bool ignoreDuplicatedScenes = false)
+    public static bool Show(string sceneName, LoadSceneMode mode = LoadSceneMode.Additive, bool ignoreDuplicatedScenes = false)
     {
-        if (!string.IsNullOrEmpty(sceneName))
+        if (string.IsNullOrEmpty(sceneName)) return false;
+        
+        //Avoid duplicated scenes
+        if (mode == LoadSceneMode.Additive && !ignoreDuplicatedScenes)
         {
-            //Avoid duplicated scenes
-            if (mode == LoadSceneMode.Additive && !ignoreDuplicatedScenes)
-            {
-                var scene = SceneManager.GetSceneByName(sceneName);
+            var scene = SceneManager.GetSceneByName(sceneName);
 
-                if (scene.isLoaded) return true;
-            }
-
-            SceneManager.LoadSceneAsync(sceneName, mode);
+            if (scene.isLoaded) return true;
         }
+
+        SceneManager.LoadSceneAsync(sceneName, mode);
 
         return false;
     }
@@ -24,6 +23,8 @@ public abstract class BaseController : MonoBehaviour
     public static void Hide(string sceneName)
     {
         if (!string.IsNullOrEmpty(sceneName))
+        {
             SceneManager.UnloadSceneAsync(sceneName);
+        }
     }
 }

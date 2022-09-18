@@ -1,9 +1,9 @@
 using System.Collections;
-using MiniclipTrick.Utility;
+using MiniclipTest.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MiniclipTrick.Init
+namespace MiniclipTest.Init
 {
     public class InitController : MonoBehaviour
     {

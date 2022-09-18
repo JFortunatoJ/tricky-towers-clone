@@ -1,9 +1,8 @@
 using Blazewing;
-using MiniclipTrick.Game;
-using MiniclipTrick.Game.Events;
-using MiniclipTrick.Game.Pause;
+using MiniclipTest.Game;
+using MiniclipTest.Game.Events;
+using MiniclipTest.Game.Pause;
 using UnityEngine;
-using Zenject;
 
 [RequireComponent(typeof(HeaderView))]
 public class HeaderController : MonoBehaviour
@@ -18,16 +17,14 @@ public class HeaderController : MonoBehaviour
         DataEvent.Unregister<OnPieceLostEvent>(OnPieceLost);
     }
     
-    [Inject]
-    public void Construct(LevelSettings settings)
+    private void Start()
     {
         _view = GetComponent<HeaderView>();
         _view.onPauseButtonClick += OnPauseButtonClick;
-        _settings = settings;
         
-        if (!_settings.againstCPU)
+        if (!GameManager.Instance.IsAgainstCPU)
         {
-            Hearts = _settings.piecesLostToGameOver;
+            Hearts = MiniclipTest.Game.GameSettings.Instance.PiecesLostToGameOver;
             _view.Init(Hearts);
         }
     }
@@ -40,10 +37,9 @@ public class HeaderController : MonoBehaviour
     private void OnPauseButtonClick()
     {
         DataEvent.Notify(new OnPauseEvent(true));
-        PauseController.Show();
+        BaseController.Show(PauseController.SCENE_NAME);
     }
     
-    private LevelSettings _settings;
     private HeaderView _view;
     private int _hearts;
     

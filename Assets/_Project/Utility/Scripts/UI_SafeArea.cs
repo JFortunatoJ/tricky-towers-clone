@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MiniclipTrick.Utility
+namespace MiniclipTest.Utility
 {
     [RequireComponent(typeof(RectTransform))]
     public class UI_SafeArea : MonoBehaviour

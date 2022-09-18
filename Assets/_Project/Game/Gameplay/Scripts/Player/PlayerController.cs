@@ -1,19 +1,12 @@
 using Blazewing;
-using MiniclipTrick.Game.Events;
-using MiniclipTrick.Game.Piece;
+using MiniclipTest.Game.Events;
+using MiniclipTest.Game.Piece;
 using UnityEngine;
-using Zenject;
 
-namespace MiniclipTrick.Game.Player
+namespace MiniclipTest.Game.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [Inject]
-        public void Construct(LevelSettings settings)
-        {
-            _settings = settings;
-        }
-        
         protected virtual void OnEnable()
         {
             DataEvent.Register<OnGameStartedEvent>(OnGameStarted);
@@ -30,11 +23,12 @@ namespace MiniclipTrick.Game.Player
         {
             this.playerId = playerId;
             
-            _endLine.OnCountdownStarted += OnCountdownStarted;
-            _endLine.OnCountdownCanceled += OnCountdownCanceled;
-            _endLine.OnCountdownComplete += OnCountdownComplete;
+            _finishLineLine.OnCountdownStarted += OnCountdownStarted;
+            _finishLineLine.OnCountdownCanceled += OnCountdownCanceled;
+            _finishLineLine.OnCountdownComplete += OnCountdownComplete;
 
-            _piecesManager.Init(OnPiecePlaced, OnPieceLost);
+            _piecesManager.Init(playerId, OnPiecePlaced, OnPieceLost);
+            _towerHeightChecker.Init(playerId);
         }
         
         protected virtual void OnGameStarted(OnGameStartedEvent obj)
@@ -58,7 +52,7 @@ namespace MiniclipTrick.Game.Player
             
             _piecesManager.SetPiecePlacedParent(piece);
             
-            if (!_endLine.pieceDetectorRay.CheckPiece())
+            if (!_finishLineLine.pieceDetectorRay.CheckPiece())
             {
                 _piecesManager.SpawnPiece();
             }
@@ -70,7 +64,7 @@ namespace MiniclipTrick.Game.Player
             
             _piecesManager.PiecesLost++;
 
-            if (_settings.againstCPU)
+            if (GameManager.Instance.IsAgainstCPU)
             {
                 if (!piece.IsPlaced)
                 {
@@ -79,7 +73,7 @@ namespace MiniclipTrick.Game.Player
                 return;
             }
             
-            if (_piecesManager.PiecesLost < _settings.piecesLostToGameOver)
+            if (_piecesManager.PiecesLost < GameSettings.Instance.PiecesLostToGameOver)
             {
                 if (!piece.IsPlaced)
                 {
@@ -115,12 +109,14 @@ namespace MiniclipTrick.Game.Player
         }
         
         public string playerId;
+        [Space]
         [SerializeField]
         protected PiecesManager _piecesManager;
         [SerializeField]
-        protected EndLineController _endLine;
+        protected FinishLineController _finishLineLine;
+        [SerializeField]
+        protected TowerHeightChecker _towerHeightChecker;
 
-        protected LevelSettings _settings;
         protected bool _isPaused;
         protected bool _gameOver;
     }

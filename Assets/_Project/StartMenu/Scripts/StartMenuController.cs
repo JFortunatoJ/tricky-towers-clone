@@ -1,9 +1,9 @@
 using Blazewing;
-using MiniclipTrick.Utility;
+using MiniclipTest.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MiniclipTrick.StartMenu
+namespace MiniclipTest.StartMenu
 {
     [RequireComponent(typeof(StartMenuView))]
     public class StartMenuController : MonoBehaviour

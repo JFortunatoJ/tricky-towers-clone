@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace MiniclipTrick.Game.Player
+namespace MiniclipTest.Game.Player
 {
     public static class PlayerFactory
     {

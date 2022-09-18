@@ -1,4 +1,4 @@
-namespace MiniclipTrick.Game.Events
+namespace MiniclipTest.Game.Events
 {
     public struct OnPauseEvent
     {

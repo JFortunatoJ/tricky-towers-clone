@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using MiniclipTrick.Game.HUD;
+using MiniclipTest.Game.HUD;
 using UnityEngine;
 using UnityEngine.UI;
 

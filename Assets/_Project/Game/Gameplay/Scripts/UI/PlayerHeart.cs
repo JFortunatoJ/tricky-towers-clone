@@ -1,8 +1,8 @@
-using MiniclipTrick.Game.Scriptables;
+using MiniclipTest.Game.Scriptables;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MiniclipTrick.Game.HUD
+namespace MiniclipTest.Game.HUD
 {
     public class PlayerHeart : MonoBehaviour
     {

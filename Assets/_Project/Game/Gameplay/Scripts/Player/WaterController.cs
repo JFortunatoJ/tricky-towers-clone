@@ -1,7 +1,7 @@
-using MiniclipTrick.Game.Piece;
+using MiniclipTest.Game.Piece;
 using UnityEngine;
 
-namespace MiniclipTrick.Piece
+namespace MiniclipTest.Piece
 {
     public class WaterController : MonoBehaviour
     {

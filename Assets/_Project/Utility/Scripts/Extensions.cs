@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MiniclipTrick.Utility
+namespace MiniclipTest.Utility
 {
     public static class Extensions
     {

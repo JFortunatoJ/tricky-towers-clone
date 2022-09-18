@@ -1,13 +1,12 @@
-using MiniclipTrick.Game.Piece;
+using MiniclipTest.Game.Piece;
 using UnityEngine;
 
-namespace MiniclipTrick.Game.Scriptables
+namespace MiniclipTest.Game.Scriptables
 {
     [CreateAssetMenu(menuName = "Scriptables/Game/Pieces Container")]
     public class PiecesContainerScriptable : ScriptableObject
     {
-        [SerializeField]
-        private PieceController[] _piecesPrefabs;
+        [SerializeField] private PieceController[] _piecesPrefabs;
 
         public int Count => _piecesPrefabs.Length;
 
@@ -15,7 +14,9 @@ namespace MiniclipTrick.Game.Scriptables
         {
             if (index < 0 || index >= Count)
             {
+#if UNITY_EDITOR
                 Debug.LogError($"Inválid index: {index}");
+#endif
                 return GetRandomPiece();
             }
 
