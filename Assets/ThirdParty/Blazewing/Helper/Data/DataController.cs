@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Blazewing
 {
-    [ExecuteInEditMode]
     public static class DataController
     {
         private static Dictionary<Type, object> m_dataList;
@@ -35,8 +33,7 @@ namespace Blazewing
         /// <returns></returns>
         public static T Get<T>() where T : struct
         {
-            object item;
-            m_dataList.TryGetValue(typeof(T), out item);
+            m_dataList.TryGetValue(typeof(T), out var item);
 
             if (item != null)
                 return (T)item;

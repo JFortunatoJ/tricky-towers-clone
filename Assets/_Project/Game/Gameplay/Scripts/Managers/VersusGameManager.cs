@@ -14,13 +14,13 @@ namespace MiniclipTest.Game
 
         protected override void InstantiatePlayers()
         {
-            PlayerFactory.CreateNewHumanPlayer("Player", _playersHolder, 0, controller =>
+            PlayerFactory<HumanController>.CreateNewPlayer("Player", _playersHolder, 0, controller =>
             {
                 _humanPlayer = controller;
                 OnPlayerInstantiated(controller);
             });
             
-            PlayerFactory.CreateNewAIPlayer("CPU", _playersHolder, 60, controller =>
+            PlayerFactory<AiController>.CreateNewAIPlayer("CPU", _playersHolder, 60, controller =>
             {
                 _cpuPlayer = controller;
                 OnPlayerInstantiated(controller);

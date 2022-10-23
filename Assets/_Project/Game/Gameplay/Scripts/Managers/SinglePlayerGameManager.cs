@@ -12,7 +12,7 @@ namespace MiniclipTest.Game
 
         protected override void InstantiatePlayers()
         {
-            PlayerFactory.CreateNewHumanPlayer("Player", _playersHolder, 0, OnPlayerInstantiated);
+            PlayerFactory<HumanController>.CreateNewPlayer("Player", _playersHolder, 0, OnPlayerInstantiated);
         }
 
         protected override void OnPlayerInstantiated(PlayerController player)
